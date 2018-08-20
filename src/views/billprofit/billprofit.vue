@@ -48,7 +48,6 @@ export default {
       settleStatus: "",
       dataTime: thisMonthStr
     };
-    var user = this.$store.state.userInfoAndMenu.userMessage.all;
     return {
       sumVisible: false,
       customerSum: 0,
