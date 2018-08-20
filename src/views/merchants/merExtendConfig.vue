@@ -145,8 +145,8 @@ import DataPage from "@src/components/DataPage";
 // table页与搜索页公用功能
 import { mixinsPc } from "@src/common/mixinsPc";
 import { mixinDataTable } from "@src/components/DataPage/dataPage";
-import { todayStr, yesterdayStr, today_ } from "@src/common/dateSerialize";
-import { taxNumVerify, idCardVerify, phoneNumVerify } from "@src/common/regexp";
+import { todayStr } from "@src/common/dateSerialize";
+import { } from "@src/common/regexp";
 import utils from "@src/common/utils";
 import {
   postMerExtendConfigs,
@@ -289,7 +289,7 @@ export default {
             {
               text: "编辑",
               color: "#1890ff",
-              visibleFn: rowdata => {
+              visibleFn: () => {
                 return this.adminFilter('mer_extend_config_add')
               },
               cb: rowdata => {

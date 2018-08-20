@@ -236,8 +236,8 @@ import CustomerDetail from "@src/components/CustomerDetail";
 // table页与搜索页公用功能
 import { mixinsPc } from "@src/common/mixinsPc";
 import { mixinDataTable } from "@src/components/DataPage/dataPage";
-import { todayStr, yesterdayStr, today_ } from "@src/common/dateSerialize";
-import { taxNumVerify, idCardVerify, phoneNumVerify } from "@src/common/regexp";
+import { todayStr } from "@src/common/dateSerialize";
+import { } from "@src/common/regexp";
 import utils from "@src/common/utils";
 import {
   getMctPayforOrders,
@@ -485,7 +485,7 @@ export default {
       this.customerDetailVisible = false;
     },
     showCustomerDetail() {
-      this.customerDetailVisible = show;
+      this.customerDetailVisible = 'show';
     },
     seachstartHandle() {
       // 开始搜索
@@ -540,80 +540,6 @@ export default {
     },
     resetAddForm(formName) {
       this.$refs[formName].resetFields();
-    },
-    addSave(formName) {
-      // 新增内容保存
-      this.$refs[formName].validate(valid => {
-        if (valid) {
-          this.saveLoading = true;
-          var addForm = this.addForm;
-          // this.resetSearchHandle();
-          postAddEnterpriseSupply()({ ...addForm }).then(data => {
-            if (data.code === "00") {
-              this.$message({
-                message: "恭喜你，新增数据成功",
-                type: "success",
-                center: true
-              });
-              this.addFormVisible = false;
-              this.resetForm("addForm");
-              this.reloadData();
-            } else {
-              this.$message({
-                message: data.msg,
-                type: "warning",
-                center: true
-              });
-            }
-            this.saveLoading = false;
-          });
-        }
-      });
-    },
-    editSave(formName) {
-      // 编辑内容保存
-      this.$refs[formName].validate(valid => {
-        if (valid) {
-          this.saveLoading = true;
-          let editForm = this.editForm;
-          // this.resetSearchHandle();
-          postEditBillrecord()({
-            billRecordNo: editForm.billRecordNo,
-            orderNo: editForm.orderNo,
-            status: editForm.status,
-            invoiceCode: editForm.invoiceCode,
-            invoiceNo: editForm.invoiceNo,
-            totalTax: editForm.totalTax,
-            phoneNo: editForm.phoneNo,
-            enterpriseName: editForm.phoneNo,
-            taxNo: editForm.taxNo,
-            enterpriseAddress: editForm.enterpriseAddress,
-            bankName: editForm.bankName,
-            bankAccountNo: editForm.bankAccountNo,
-            companyPhone: editForm.companyPhone,
-            bussinessName: editForm.bussinessName,
-            billAmount: editForm.billAmount
-          }).then(data => {
-            if (data.code === "00") {
-              this.$message({
-                message: "恭喜你，修改数据成功",
-                type: "success",
-                center: true
-              });
-              this.editFormVisible = false;
-              this.reloadData();
-            } else {
-              this.$message({
-                message: data.msg,
-                type: "warning",
-                center: true
-              });
-            }
-            this.saveLoading = false;
-            console.log(data);
-          });
-        }
-      });
     }
   },
   computed: {
