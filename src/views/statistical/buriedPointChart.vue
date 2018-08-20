@@ -16,7 +16,7 @@ import BuriedPointChart from "@src/components/BuriedPointChart";
 // table页与搜索页公用功能
 import { mixinDataTable } from "@src/components/BuriedPointChart/chartPage";
 import { todayStr, today_ } from "@src/common/dateSerialize";
-import { postBurialPointCharts, getBurialPointTotal } from "@src/apis";
+import { postBurialPointCharts } from "@src/apis";
 export default {
   name: "operator_log_chart",
   components: {

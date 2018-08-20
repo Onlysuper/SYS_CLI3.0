@@ -83,11 +83,9 @@ import DataPage from "@src/components/DataPage";
 // table页与搜索页公用功能
 import { mixinDataTable } from "@src/components/DataPage/dataPage";
 import { mixinsPc } from "@src/common/mixinsPc";
-import { todayStr } from "@src/common/dateSerialize";
 import {
   patchVersion,
   getVersions,
-  getOldVersions,
   setUsingVersion
 } from "@src/apis";
 export default {
@@ -210,13 +208,8 @@ export default {
             {
               text: "编辑",
               color: "#3685FD",
-              visibleFn: rowdata => {
+              visibleFn: () => {
                 return this.adminFilter('agent_edit')
-                // if (this.adminOperationAll.agent_edit == "TRUE") {
-                //   return true;
-                // } else {
-                //   return false;
-                // }
               },
               cb: rowdata => {
                 this.uploadDialogVisible = true;
@@ -229,14 +222,6 @@ export default {
             },
             {
               text: "启用",
-              visibleFn: rowdata => {
-                return this.adminFilter('agent_edit')
-                // if (this.adminOperationAll.agent_edit == "TRUE") {
-                //   return true;
-                // } else {
-                //   return false;
-                // }
-              },
               color: "#3685FD",
               visibleFn: rowdata => {
                 if (rowdata.status === "TRUE") {
@@ -254,7 +239,7 @@ export default {
                   setUsingVersion()({
                     clientVersion: rowdata.clientVersion,
                     type: rowdata.type
-                  }).then(data => {
+                  }).then(() => {
                     this.reloadData();
                     this.$message({
                       type: "success",
@@ -341,7 +326,7 @@ export default {
       this.$refs["form"].validate(valid => {
         if (valid) {
           this.saveLoading = true;
-          patchVersion()(this.form).then(data => {
+          patchVersion()(this.form).then(() => {
             this.uploadDialogVisible = false;
             this.reloadData();
             this.$message({
@@ -353,7 +338,7 @@ export default {
         }
       });
     },
-    beforeUploadFile(file) {
+    beforeUploadFile() {
       // const extension = file.name.split(".")[1] === "xlsx";
       // const extension2 = file.name.split(".")[1] === "numbers";
       // const isLt2M = file.size / 1024 / 1024 < 10;
@@ -366,7 +351,7 @@ export default {
       // this.saveLoading = false;
       // return (extension || extension2) && isLt2M;
     },
-    uploadFileSuccess(res, file, fileList) {
+    uploadFileSuccess(res) {
       if (res.code == "00") {
         this.$message({
           message: "恭喜你，导入成功",
@@ -383,7 +368,7 @@ export default {
       this.$refs["uploadFile"].clearFiles();
       this.uploadDialogVisible = false;
     },
-    uploadFileError(err, file, fileList) {
+    uploadFileError(err) {
       this.$message({
         type: "danger",
         message: "上传失败!" + err

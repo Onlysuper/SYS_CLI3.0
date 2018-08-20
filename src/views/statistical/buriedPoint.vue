@@ -307,13 +307,13 @@ export default {
         console.log(res);
         if (res.ptNum > 0) {
           this.ptTotal = `普通商户共操作${res.ptNum}次,明细如下：<hr>`;
-          res.pt.forEach((value, index, array) => {
+          res.pt.forEach((value) => {
             this.ptTotal += `${value.actionDesc} ${value.amount} 次 <br>`;
           });
         }
         if (res.jmNum > 0) {
           this.jmTotal = `<br>静默商户共操作${res.ptNum}次,明细如下：<hr>`;
-          res.pt.forEach((value, index, array) => {
+          res.pt.forEach((value) => {
             this.jmTotal += `${value.actionDesc} ${value.amount} 次 <br>`;
           });
         }
@@ -324,7 +324,7 @@ export default {
           this.$alert(content, "统计信息", {
             dangerouslyUseHTMLString: true,
             confirmButtonText: "确定",
-            callback: action => { }
+            // callback: action => { }
           });
         }
       });

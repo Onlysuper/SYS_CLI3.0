@@ -230,8 +230,6 @@ import { mixinsPc } from "@src/common/mixinsPc";
 import { mixinDataTable } from "@src/components/DataPage/dataPage";
 import {
   todayStr,
-  yesterdayStr,
-  eightdayStr,
   today_
 } from "@src/common/dateSerialize";
 import { getSettles, getAgentSettleSum, postUpdateSettles } from "@src/apis";
@@ -627,9 +625,6 @@ export default {
     userAll() {
       // 所有的用户信息
       return this.$store.state.userInfoAndMenu.userMessage.all;
-    },
-    bankOptions() {
-      return banks;
     }
   },
   watch: {

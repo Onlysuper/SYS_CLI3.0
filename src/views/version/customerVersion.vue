@@ -62,10 +62,8 @@ import DataPage from "@src/components/DataPage";
 // table页与搜索页公用功能
 import { mixinsPc } from "@src/common/mixinsPc";
 import { mixinDataTable } from "@src/components/DataPage/dataPage";
-import { todayStr } from "@src/common/dateSerialize";
 import {
   postCustomerVersion,
-  patchCustomerVersion,
   getCustomerVersions
 } from "@src/apis";
 export default {
@@ -329,7 +327,7 @@ export default {
       this.dialogVisible = false;
       this.reloadData();
     },
-    submitFileError(err, file, fileList) {
+    submitFileError(err) {
       this.$message({
         type: "danger",
         message: "上传失败!" + err

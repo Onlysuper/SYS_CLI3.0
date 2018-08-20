@@ -65,8 +65,6 @@ import { mixinsPc } from "@src/common/mixinsPc";
 import { mixinDataTable } from "@src/components/DataPage/dataPage";
 import {
   todayStr,
-  yesterdayStr,
-  eightdayStr,
   today_
 } from "@src/common/dateSerialize";
 import { getCustomerSettles, postStatusCustomerSettle } from "@src/apis";
@@ -287,7 +285,6 @@ export default {
                   payTime: createTime,
                 }).then(res => {
                   if (res.code == "00") {
-                    let nowStatus = res
                     rowdata.outMoneyStatus = res.data;
                     this.$message({
                       message: "已更新",
