@@ -140,15 +140,13 @@
 }
 </style>
 <script>
-import $ from "jquery";
 import SearchForm from "@src/components/SearchForm";
 import DataPage from "@src/components/DataPage";
 // table页与搜索页公用功能
 import { mixinsPc } from "@src/common/mixinsPc";
 import { mixinDataTable } from "@src/components/DataPage/dataPage";
-import { todayStr, today_ } from "@src/common/dateSerialize";
-import { getChangeBills, postUpdateBill, getOneChangeBill } from "@src/apis";
-import utils from "@src/common/utils";
+import { } from "@src/common/dateSerialize";
+import { getChangeBills, postUpdateBill } from "@src/apis";
 import payDetail from "./payDetail";
 import openInfo from "./openInfo";
 import paystatusGoods from "./paystatusGoods";
@@ -412,7 +410,7 @@ export default {
           ]
         },
         // 数据加载成功
-        dataSuccess: data => { }
+        // dataSuccess: data => { }
       }
     };
   },
@@ -440,7 +438,7 @@ export default {
       }
     },
     // 下一步
-    nextFn(next, nextFn) {
+    nextFn(next) {
       console.log('首页');
       this.openProductView = next;
       this.reloadData()
@@ -468,7 +466,7 @@ export default {
       this.reloadData()
     },
     // 审核通过
-    adoptSave(customerType, detailsForm) {
+    adoptSave() {
       let resaultForm = this.rowData;
       console.log(resaultForm);
       let obj = {
@@ -486,7 +484,7 @@ export default {
       });
     },
     // 审核拒绝
-    refuseSave(customerType, detailsForm) {
+    refuseSave() {
       this.$prompt("请输入拒绝原因", "提示", {
         confirmButtonText: "确定",
         cancelButtonText: "取消",

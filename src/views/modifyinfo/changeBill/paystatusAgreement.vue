@@ -39,7 +39,6 @@
 }
 </style>
 <script>
-import utils from "@src/common/utils";
 import { mixinsPc } from "@src/common/mixinsPc";
 import CustomerServer from "@src/components/CompanyContract/CustomerContract";
 // table页与搜索页公用功能

@@ -119,8 +119,7 @@
 import bussinessTypeJson from "@src/data/bussinessType.json";
 import { mixinsPc } from "@src/common/mixinsPc";
 // table页与搜索页公用功能
-import { todayStr } from "@src/common/dateSerialize";
-import { taxNumVerify, idCardVerify, phoneNumVerify, idCardVerify_r } from "@src/common/regexp";
+import { phoneNumVerify, idCardVerify } from "@src/common/regexp";
 import { areaOrgcode } from "@src/common/orgcode";
 import utils from "@src/common/utils"
 // import CityPicher from "@src/components/CityPicher"
@@ -372,7 +371,7 @@ export default {
       this.bankCode = value;
       this.getBankListHandle();
     },
-    getBankListHandle(back) {
+    getBankListHandle() {
       this.payStatusForm.unionCode = "";
       this.payStatusForm.branchName = "";
       // 获取支行
@@ -534,14 +533,14 @@ export default {
     }
   },
   watch: {
-    accountType(val) {
+    accountType() {
       this.accountNameChange();
       this.isLegalPersonSettleIdCard();
     },
-    "payStatusForm.accountName"(val) {
+    "payStatusForm.accountName"() {
       this.isLegalPersonSettleIdCard();
     },
-    "payStatusForm.legalPerson"(val) {
+    "payStatusForm.legalPerson"() {
       this.accountNameChange();
       this.isLegalPersonSettleIdCard();
     }

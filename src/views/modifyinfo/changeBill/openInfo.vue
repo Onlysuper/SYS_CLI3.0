@@ -20,24 +20,13 @@
 }
 </style>
 <script>
-import bussinessTypeJson from "@src/data/bussinessType.json";
 import { mixinsPc } from "@src/common/mixinsPc";
 // table页与搜索页公用功能
-import { todayStr } from "@src/common/dateSerialize";
-import { taxNumVerify, idCardVerify, phoneNumVerify } from "@src/common/regexp";
-import { areaOrgcode } from "@src/common/orgcode";
+import { } from "@src/common/regexp";
 import paystatusInfo from "./paystatusInfo";
 import paystatusGoods from "./paystatusGoods";
 import paystatusUpload from "./paystatusUpload";
 import paystatusSuccess from "./paystatusSuccess";
-
-import {
-  getBankList,
-  completeSettleInfo,
-  getCustomerEchoProduct,
-  getCheckCustomerProduct
-} from "@src/apis";
-import { banks } from "@src/common/bank";
 export default {
   name: "changeBillOpenInfo",
   props: {

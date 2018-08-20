@@ -69,7 +69,7 @@ export default {
 .el-main.myp-el-main {
   position: relative;
   padding: 0px !important;
-  text-align:left;
+  text-align: left;
 }
 .layout-full-page {
   height: 100vh;
@@ -102,7 +102,6 @@ export default {
   width: 100%;
   height: 100%;
 }
-
 
 .el-header,
 .el-footer {
