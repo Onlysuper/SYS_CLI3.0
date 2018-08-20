@@ -75,7 +75,6 @@
 <script>
 import $ from "jquery";
 import "@src/common/zTree/js/jquery.ztree.all.min.js";
-import axios from "axios";
 import SearchForm from "@src/components/SearchForm";
 import DataPage from "@src/components/DataPage";
 import { mixinsPc } from "@src/common/mixinsPc";
@@ -263,7 +262,7 @@ export default {
             {
               color: "#67C23A",
               text: "编辑",
-              visibleFn: rowdata => {
+              visibleFn: () => {
                 return this.adminFilter('user_edit')
               },
               cb: rowdata => {
@@ -274,7 +273,7 @@ export default {
             {
               text: "配置角色",
               color: "#E6A23C",
-              visibleFn: rowdata => {
+              visibleFn: () => {
                 return this.adminFilter('user_role_edit')
               },
               cb: rowdata => {
@@ -300,7 +299,7 @@ export default {
             {
               text: "删除",
               color: "#1890ff",
-              visibleFn: rowdata => {
+              visibleFn: () => {
                 return this.adminFilter('user_delete')
               },
               cb: rowdata => {
@@ -425,7 +424,6 @@ export default {
     },
     configRoleSave(roleForm) {
       // 配置角色保存
-      let roleCode = roleForm.roleCode;
       let nodes = this.zTreeObj.getChangeCheckedNodes();
       if (nodes.length == 0) {
         this.$message({

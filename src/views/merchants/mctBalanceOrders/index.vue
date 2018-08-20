@@ -28,209 +28,7 @@
       </div>
       <myp-data-page :actionUrl="actionUrl" @pagecount="pagecountHandle" @pagelimit="pagelimitHandle" @operation="operationHandle" ref="dataTable" :tableDataInit="tableData" :page="postPage" :limit="postLimit" :search="searchCondition"></myp-data-page>
     </div>
-    <!-- 新增start -->
-    <el-dialog v-dialogDrag center title="新增资质" :visible.sync="addFormVisible">
-      <el-form size="small" :model="addForm" ref="addForm" :rules="addFormRules">
-        <el-row>
-          <el-col :span="12">
-            <div class="grid-content bg-purple">
-              <el-form-item label="资质名称" prop="name" :label-width="formLabelWidth">
-                <el-input v-model="addForm.name" auto-complete="off"></el-input>
-              </el-form-item>
-            </div>
-          </el-col>
-          <el-col :span="12">
-            <div class="grid-content bg-purple-light">
-              <el-form-item label="税号" prop="tax" :label-width="formLabelWidth">
-                <el-input v-model="addForm.tax" auto-complete="off"></el-input>
-              </el-form-item>
-            </div>
-          </el-col>
-        </el-row>
-        <el-row>
-          <el-col :span="12">
-            <div class="grid-content bg-purple">
-              <el-form-item label="地址" prop="address" :label-width="formLabelWidth">
-                <el-input v-model="addForm.address" auto-complete="off"></el-input>
-              </el-form-item>
-            </div>
-          </el-col>
-          <el-col :span="12">
-            <div class="grid-content bg-purple-light">
-              <el-form-item label="电话" prop="tel" :label-width="formLabelWidth">
-                <el-input v-model="addForm.tel" auto-complete="off"></el-input>
-              </el-form-item>
-            </div>
-          </el-col>
-        </el-row>
-        <el-row>
-          <el-col :span="12">
-            <div class="grid-content bg-purple">
-              <el-form-item label="开户银行名称" prop="bank" :label-width="formLabelWidth">
-                <el-input v-model="addForm.bank" auto-complete="off"></el-input>
-              </el-form-item>
-            </div>
-          </el-col>
-          <el-col :span="12">
-            <div class="grid-content bg-purple-light">
-              <el-form-item label="银行帐号" prop="account" :label-width="formLabelWidth">
-                <el-input v-model="addForm.account" auto-complete="off"></el-input>
-              </el-form-item>
-            </div>
-          </el-col>
-        </el-row>
-      </el-form>
-      <div slot="footer" class="dialog-footer">
-        <el-button @click="resetForm('addForm')">重置</el-button>
-        <el-button :loading="saveLoading" type="primary" @click="addSave('addForm')">确 定</el-button>
-      </div>
-    </el-dialog>
-    <!-- 新增end -->
-    <!-- 详情 start -->
-    <el-dialog v-dialogDrag title="代付订单详情" center :visible.sync="detailsFormVisible">
-      <div class="detail-full">
-        <div class="block-box">
-          <div class="title">基本信息</div>
-          <ul class="content">
-            <li>
-              <span class="label">订单创建时间: </span>{{detailsForm.createTime}}
-            </li>
-            <li>
-              <span class="label">{{isCustomer ? "订单号" : "商户订单号"}}: </span>{{detailsForm.companyOrderNo}}
-            </li>
-            <li>
-              <span class="label">系统订单号: </span>{{detailsForm.orderNo}}
-            </li>
-            <li>
-              <span class="label">商户编号: </span>{{detailsForm.customerNo}}
-            </li>
-            <li>
-              <span class="label">代理商编号: </span>{{detailsForm.customerNo}}
-            </li>
-            <li>
-              <span class="label">备注信息: </span>{{detailsForm.postScript}}
-            </li>
-          </ul>
-        </div>
-        <div class="block-box">
-          <div class="title">代付信息</div>
-          <ul class="content">
-            <li>
-              <span class="label">账户类型: </span> {{detailsForm.accountType | statusFilter('mctPayforAccountType')}}
-            </li>
-            <li>
-              <span class="label">银行名称: </span>{{detailsForm.bankName}}
-            </li>
-            <li>
-              <span class="label">银行编号码: </span>{{detailsForm.bankCode}}
-            </li>
-            <li>
-              <span class="label">代付金额: </span> {{utils.accMul(detailsForm.settleAmount, 0.01)}}
-            </li>
-            <li>
-              <span class="label">代付状态: </span> {{detailsForm.status | statusFilter('mctPayforStatus')}}
-            </li>
-            <li>
-              <span class="label">代付手续费: </span> {{utils.accMul(detailsForm.fee, 0.01)}}
-            </li>
-            <li>
-              <span class="label">账户名称: </span> {{detailsForm.accountName}}
-            </li>
-            <li>
-              <span class="label">银行卡: </span> {{detailsForm.accountNo}}
-            </li>
-            <li>
-              <span class="label">身份证号: </span> {{detailsForm.idCard}}
-            </li>
-            <li>
-              <span class="label">代付成功时间: </span> {{detailsForm.proxyConfirmTime}}
-            </li>
-          </ul>
-        </div>
-      </div>
-      <!-- <div class="detail-content">
-        <el-row class="line-label-box cross-back">
 
-        </el-row>
-        <el-row class="line-label-box cross-back">
-
-        </el-row>
-        <el-row class="line-label-box cross-back">
-          <el-col :span="24">
-            <div class="grid-content bg-purple-light">
-              <span class="line-label">代理商编号:</span>
-              <span class="line-label-last">{{detailsForm.agentNo}}</span>
-            </div>
-          </el-col>
-        </el-row>
-        <el-row class="line-label-box cross-back">
-
-          <el-col :span="12">
-            <div class="grid-content bg-purple-light">
-              <span class="line-label">代付手续费:</span>
-              <span class="line-label-last">
-                {{utils.accMul(detailsForm.fee, 0.01)}}
-              </span>
-            </div>
-          </el-col>
-        </el-row>
-        <el-row class="line-label-box cross-back">
-          <el-col :span="24">
-            <div class="grid-content bg-purple-light">
-              <span class="line-label">代付状态:</span>
-              <span class="line-label-last">{{detailsForm.status | statusFilter('mctPayforStatus')}}</span>
-            </div>
-          </el-col>
-        </el-row>
-        <el-row class="line-label-box cross-back">
-          <el-col :span="12">
-            <div class="grid-content bg-purple">
-              <span class="line-label">银行帐号:</span>
-              <span class="line-label-last">{{detailsForm.accountNo}}</span>
-            </div>
-          </el-col>
-
-        </el-row>
-        <el-row class="line-label-box cross-back">
-
-          <el-col :span="12">
-            <div class="grid-content bg-purple-light">
-              <span class="line-label">银行名称:</span>
-              <span class="line-label-last">{{detailsForm.bankName}}</span>
-            </div>
-          </el-col>
-        </el-row>
-        <el-row class="line-label-box cross-back">
-          <el-col :span="12">
-            <div class="grid-content bg-purple">
-              <span class="line-label">银行编码:</span>
-              <span class="line-label-last">{{detailsForm.bankCode}}</span>
-            </div>
-          </el-col>
-          <el-col :span="12">
-            <div class="grid-content bg-purple-light">
-              <span class="line-label">代付成功时间:</span>
-              <span class="line-label-last">{{detailsForm.proxyConfirmTime}}</span>
-            </div>
-          </el-col>
-        </el-row>
-        <el-row class="line-label-box cross-back">
-          <el-col :span="24">
-            <div class="grid-content bg-purple">
-              <span class="line-label">订单创建时间:</span>
-              <span class="line-label-last">{{detailsForm.createTime}}</span>
-            </div>
-          </el-col>
-          </el-col>
-        </el-row>
-
-      </div> -->
-
-      <div slot="footer" class="dialog-footer">
-        <el-button @click="detailsFormVisible = false">取 消</el-button>
-      </div>
-    </el-dialog>
-    <!-- 详情 end -->
     <!-- 商户start -->
     <el-dialog v-dialogDrag title="商户信息" center :visible.sync="customerDetailVisible" width="400px">
       <customer-detail ref="customerDetail" @showIndex="showIndex" @showCustomerDetail="showCustomerDetail"></customer-detail>
@@ -283,14 +81,13 @@ import CustomerDetail from "@src/components/CustomerDetail";
 // table页与搜索页公用功能
 import { mixinsPc } from "@src/common/mixinsPc";
 import { mixinDataTable } from "@src/components/DataPage/dataPage";
-import { todayStr, yesterdayStr, today_ } from "@src/common/dateSerialize";
-import { taxNumVerify, idCardVerify, phoneNumVerify } from "@src/common/regexp";
+import { todayStr } from "@src/common/dateSerialize";
+import { } from "@src/common/regexp";
 import utils from "@src/common/utils";
 import {
   getMctBalanceOrders,
   getMctBalanceOrdersOne,
-  getMctPayforOrdersSum,
-  getMctManageOrders
+  getMctPayforOrdersSum
 } from "@src/apis";
 
 export default {
@@ -311,12 +108,6 @@ export default {
       amountCount: "0",
       sumVisible: false,
       sumLoading: false,
-      addFormVisible: false,
-      addForm: {},
-      addFormRules: {
-        name: [{ required: true, message: "请输入资质名称", trigger: "blur,change" }],
-        tax: [{ required: true, message: "请输入税号", trigger: "blur,change" }]
-      },
       detailsFormVisible: false, // 详情框
       editFormVisible: false, // 编辑框
       formLabelWidth: "100px",
@@ -344,7 +135,7 @@ export default {
             width: "155px",
             word: "money",
             val: "",
-          }, , {
+          }, {
             key: "账户状态",
             width: "155px",
             word: "accStatus",
@@ -363,7 +154,7 @@ export default {
               text: "查询余额",
               color: "#1890ff",
               loading: true,
-              visibleFn: rowdata => {
+              visibleFn: () => {
                 return this.adminFilter('mer_balance_orders_search_balance')
               },
               cb: (rowdata, operationLoading, index) => {
@@ -530,7 +321,7 @@ export default {
       this.customerDetailVisible = false;
     },
     showCustomerDetail() {
-      this.customerDetailVisible = show;
+      this.customerDetailVisible = 'show';
     },
     seachstartHandle() {
       // 开始搜索
@@ -563,80 +354,8 @@ export default {
     resetAddForm(formName) {
       this.$refs[formName].resetFields();
     },
-    addSave(formName) {
-      // 新增内容保存
-      this.$refs[formName].validate(valid => {
-        if (valid) {
-          this.saveLoading = true;
-          var addForm = this.addForm;
-          // this.resetSearchHandle();
-          postAddEnterpriseSupply()({ ...addForm }).then(data => {
-            if (data.code === "00") {
-              this.$message({
-                message: "恭喜你，新增数据成功",
-                type: "success",
-                center: true
-              });
-              this.addFormVisible = false;
-              this.resetForm("addForm");
-              this.reloadData();
-            } else {
-              this.$message({
-                message: data.msg,
-                type: "warning",
-                center: true
-              });
-            }
-            this.saveLoading = false;
-          });
-        }
-      });
-    },
-    editSave(formName) {
-      // 编辑内容保存
-      this.$refs[formName].validate(valid => {
-        if (valid) {
-          this.saveLoading = true;
-          let editForm = this.editForm;
-          // this.resetSearchHandle();
-          postEditBillrecord()({
-            billRecordNo: editForm.billRecordNo,
-            orderNo: editForm.orderNo,
-            status: editForm.status,
-            invoiceCode: editForm.invoiceCode,
-            invoiceNo: editForm.invoiceNo,
-            totalTax: editForm.totalTax,
-            phoneNo: editForm.phoneNo,
-            enterpriseName: editForm.phoneNo,
-            taxNo: editForm.taxNo,
-            enterpriseAddress: editForm.enterpriseAddress,
-            bankName: editForm.bankName,
-            bankAccountNo: editForm.bankAccountNo,
-            companyPhone: editForm.companyPhone,
-            bussinessName: editForm.bussinessName,
-            billAmount: editForm.billAmount
-          }).then(data => {
-            if (data.code === "00") {
-              this.$message({
-                message: "恭喜你，修改数据成功",
-                type: "success",
-                center: true
-              });
-              this.editFormVisible = false;
-              this.reloadData();
-            } else {
-              this.$message({
-                message: data.msg,
-                type: "warning",
-                center: true
-              });
-            }
-            this.saveLoading = false;
-            console.log(data);
-          });
-        }
-      });
-    }
+
+
   },
   computed: {
     isCustomer() {

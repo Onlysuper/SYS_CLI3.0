@@ -89,9 +89,9 @@
               <span class="label">账户名称:</span> {{detailsForm.accountName}}</li>
             <li>
               <span class="label">收款人账户号:</span> {{detailsForm.accountNo}}</li>
-            <li v-if="enterprise&&private&&unCorporatePerson">
+            <li v-if="enterprise&&privateperson&&unCorporatePerson">
               <span class="label">预留手机号:</span> {{detailsForm.reservedPhoneNo}}</li>
-            <li v-if="enterprise&&private">
+            <li v-if="enterprise&&privateperson">
               <span class="label">持卡人证件号:</span> {{detailsForm.settleIdCard}}</li>
           </ul>
         </div>
@@ -110,7 +110,7 @@
               <span class="label">微信H5费率:</span> {{utils.accMul(detailsForm.wechatH5Rate,100)}}%</li>
             <li>
               <span class="label">支付宝H5费率:</span> {{utils.accMul(detailsForm.alipayH5Rate,100)}}%</li>
-            <li v-if="addForm.settleMode=='T0'">
+            <li v-if="detailsForm.settleMode=='T0'">
               <span class="label">T0提现手续费:</span>{{detailsForm.t0CashCostFixed}}</li>
           </ul>
         </div>
@@ -166,24 +166,19 @@ import LargeimgView from '@src/components/LargeimgView'
 import ScrollPane from "@src/components/ScrollPane";
 // 组件end
 import "@src/common/filters";
-import { areaOrgcode } from "@src/common/orgcode";
-import add from "./add";
 // table页与搜索页公用功能
 import { mixinsPc } from "@src/common/mixinsPc";
 import utils from "@src/common/utils";
 import secret from "@src/common/secret";
-import { mapState } from 'vuex'
 import {
   getOnlineFacilitatorOrders,
   getMctManageOrdersAdd,
-  getBankList
 } from "@src/apis";
-import qs from "qs";
 import UploadImg from "@src/components/UploadImg";
 import bussinessTypeJson from "@src/data/bussinessType.json";
 import { banks } from "@src/common/bank";
 import settleMode from "@src/data/settleMode.json";
-import { taxNumVerify, idCardVerify, phoneNumVerify, idCardVerify_r } from "@src/common/regexp";
+import { } from "@src/common/regexp";
 export default {
   name: "mer_manage_orders",
   props: {
@@ -208,7 +203,7 @@ export default {
       enterprise: true,//企业
       personal: true,// 个人
       public: true,// 对公
-      private: true,// 对私
+      privateperson: true,// 对私
       detailsFormDefault: {
         wechatScansRate: "",
         alipayScansRate: "",
@@ -449,53 +444,6 @@ export default {
         cardHolderIdImg: "",//持卡人手持身份证合影照片
         othersImg: ""//其他照片
       },
-      addForm: {
-      },
-      addFormRules: {
-        version: [{ required: true, message: "请输入版本号", trigger: "blur,change" }],
-        registerAddress: [{ required: true, message: "请输入注册地址", trigger: "blur,change" }],
-        contactName: [{ required: true, message: "请输入联系人名称", trigger: "blur,change" }],
-        contactPhone: [{ required: true, message: "请输入联系人座机", trigger: "blur,change" }],
-        contactEmail: [{ required: true, message: "请输入联系人邮箱", trigger: "blur,change" }],
-        taxNo: [{ required: true, message: "请输入统一社会信用代码", trigger: "blur,change" }],
-        service: [{ required: true, message: "请输入服务号", trigger: "blur,change" }],
-        companyNo: [{ required: true, message: "请输入机构编号", trigger: "blur,change" }],
-        comCustomerNo: [{ required: true, message: "请输入接入机构商户编号", trigger: "blur,change" }],
-        enterpriseName: [{ required: true, message: "请输入商户企业名称", trigger: "blur,change" }],
-        bussinessName: [{ required: true, message: "请输入商户简称", trigger: "blur,change" }],
-        customerType: [{ required: true, message: "请选择商户类型", trigger: "blur,change" }],
-        legalPerson: [{ required: true, message: "请输入法人姓名", trigger: "blur,change" }],
-        bussinessAddress: [{ required: true, message: "请输入商户经营地址", trigger: "blur, change" }],
-        servicePhone: [{ required: true, message: "请输入客服电话", trigger: "blur,change" }],
-        contactMobile: [{ required: true, message: "请输入联系人手机号", trigger: "blur,change" }],
-        idType: [{ required: true, message: "请选择证件类型", trigger: "blur,change" }],
-        idCard: [
-          { required: true, message: "请输入证件号码", trigger: "blur,change" }
-          // { required: true, validator: idCardVerify, trigger: "blur" }
-        ],
-        orgCode: [{ required: true, message: "地区编码", trigger: "blur,change" }],
-        myarea: [{ required: true, type: 'array', message: "请输入", trigger: "blur,change" }],
-        accountName: [{ required: true, message: "请输入收款人账户名", trigger: "blur,change" }],
-        accountNo: [{ required: true, message: "请输入收款人账户号", trigger: "blur,change" }],
-        accountType: [{ required: true, message: "请选择账户类型", trigger: "blur,change" }],
-        unionCode: [{ required: true, message: "请先选择支行", trigger: "blur,change" }],
-        // unionCode: [{ required: true, message: "请选择支行", trigger: "blur,change" }],
-        reservedPhoneNo: [{ required: true, message: "请输入银行预留手机号", trigger: "blur,change" }],
-        settleIdCard: [{ required: true, message: "请输入持卡人证件号", trigger: "blur,change" }],
-        category: [{ required: true, message: "请输入经营类目编号", trigger: "blur,change" }],
-        wechatScansRate: [{ required: true, message: "请输入微信扫码费率", trigger: "blur,change" }],
-        alipayScansRate: [{ required: true, message: "请输入支付宝扫码费率", trigger: "blur,change" }],
-        wechatAppRate: [{ required: true, message: "请输入微信APP费率", trigger: "blur,change" }],
-        alipayAppRate: [{ required: true, message: "请输入支付宝APP费率", trigger: "blur,change" }],
-        wechatH5Rate: [{ required: true, message: "请输入微信H5费率", trigger: "blur,change" }],
-        alipayH5Rate: [{ required: true, message: "请输入支付宝H5费率", trigger: "blur,change" }],
-        t0CashCostFixed: [{ required: true, message: "请输入T0提现手续费", trigger: "blur,change" }],
-        settleMode: [{ required: true, message: "请选择结算方式", trigger: "blur,change" }],
-        idNoEffectiveBegin: [{ required: true, message: "请选择开始日期", trigger: "blur,change" }],
-        idNoEffectiveEnd: [{ required: true, message: "请选择结束日期", trigger: "blur,change" }],
-        bussinessLicenseEffectiveBegin: [{ required: true, message: "请选择开始日期", trigger: "blur,change" }],
-        bussinessLicenseEffectiveEnd: [{ required: true, message: "请选择结束日期", trigger: "blur,change" }],
-      },
       formLabelWidth: "150px"
     };
   },
@@ -545,6 +493,7 @@ export default {
           }
         })
       }).catch((error) => {
+        console.log(error)
       })
     },
     initFn() {
@@ -578,7 +527,7 @@ export default {
             this.$set(this.$data, "detailsForm", newForm);
             // 查询图片start
             this.$set(this.$data, 'newarr', []);
-            for (let [imgType, imgObj] of Object.entries(this.senImgAll)) {
+            for (let [imgObj] of Object.entries(this.senImgAll)) {
               let imgId = imgObj.id;
               if (getData[imgId]) {
                 this.searchImg(agentNo, getData[imgId])
@@ -589,7 +538,7 @@ export default {
             this.enterprise = false;//企业
             this.personal = false;//个人
             this.public = false;// 对公
-            this.private = false;// 对私
+            this.privateperson = false;// 对私
             this.corporatePerson = false;// 法人
             this.unCorporatePerson = false;//非法人
             let accountType = getData.accountType; //结算类型
@@ -608,8 +557,8 @@ export default {
               }
               if (accountType == 1) {
                 // 对私
-                this.private = true;
-                if (accountName == legalPerson) {
+                this.privateperson = true;
+                if (accountName == getData.legalPerson) {
                   // 法人
                   this.corporatePerson = true;
                 } else {
@@ -639,31 +588,6 @@ export default {
       this.largeImgRow = this.detailImgArr;
       this.$refs['largeImg'].imgInit();
       this.fadeViewVisible = true;
-    },
-    hideImageView() {
-      this.fadeViewVisible = false;
-    },
-    setActiveItem(refname, index) {
-      this.$refs[refname].setActiveItem(index)
-    },
-    rotateInit() {
-      this.rotateCurrent = 0
-      this.rotateClass = "";
-    },
-    rotateFn() {
-      this.rotateCurrent = (this.rotateCurrent + 90) % 360;
-      this.rotateClass = "rotate" + this.rotateCurrent;
-    },
-    preFn(refname) {
-      this.$refs[refname].preFn(90)
-    },
-    preNext(refname) {
-      this.$refs[refname].preNext(90)
-    },
-    resetScrollViewHeight() {
-      this.$nextTick(() => {
-        this.$refs.iscroll.refresh();
-      })
     },
     // 图片查看器start
     showImg(url, item, imgname, type, name, initialIndex, refname) {
@@ -733,85 +657,11 @@ export default {
     }
   },
   computed: {
-    // 上传图片所需start
-    ...mapState({
-      saveImgIdList: state => state.mctManageOrders_Pc.imgKeys, // 储存后台需要的图片id
-      imgUrlList: state => state.mctManageOrders_Pc.imgKeys, // 后台返回的图片路径用于显示到页面
-    }),
-    //商户名称label
-    enterpriseNameHolder() {
-      if (this.customerType == "enterprise") {
-        return "请填写营业与执照上一致的名称"
-      } else {
-        return "请填写申请人姓名"
-      }
-    },
-    bussinessNameHolder() {
-      if (this.customerType == "enterprise") {
-        return "请填写商户简称"
-      } else {
-        return "请填写申请人姓名/简称"
-      }
-    },
-    allImgData() { // 上传图片时候需要附带的参数
-      return {
-        businessNo: this.rowData.bussinessNo,
-        businessType: "customer",
-        imgString: ""
-      }
-    },
-    imgUploadAction() {
-      return `${this.oaIp}'/bussinessImg/upload'`
-    },
-    // 上传图片所需end
-
-    accountTypeOptions() {
-      return this.statusFilterQuery('accountType')
-    },
-    idTypeOptions() {
-      return this.statusFilterQuery('idType')
-    },
-    customerTypeOptions() {
-      return this.statusFilterQuery('mctManageType')
-    },
-    mctManageSettleModeOptions() {
-      return this.statusFilterQuery('mctManageSettleMode')
-    },
-    isBankAreaRule() {
-      if (this.addForm.branchName == "") {
-        return "bankArea"
-      } else {
-        return ""
-      }
-    }
 
   },
   mounted() { },
   watch: {
-    'addForm.myarea'(val) {
-      this.addForm.orgCode = val[2]
-    },
-    detailsFormVisible(val) {
-      this.saveLoadingStop(val);
-    },
-    editFormVisible(val) {
-      this.saveLoadingStop(val);
-    },
-    //商户类型选择
-    "addForm.customerType"(val) {
-      if (val == 0) {
-        this.customerType = "personal"
-      }
-      if (val == 1) {
-        this.customerType = "enterprise"
-      }
-      this.clearValidate();
-    },
-    "addForm.version"(val) {
-      if (val) {
-        localStorage.setItem("mctManageOrdersVersion", val);
-      }
-    }
+
   },
 
   created() {

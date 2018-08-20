@@ -324,13 +324,8 @@ export default {
             {
               text: "编辑",
               color: "#1890ff",
-              visibleFn: rowdata => {
+              visibleFn: () => {
                 return this.adminFilter('menu_function_edit')
-                // if (this.adminOperationAll.menu_function_edit == "TRUE") {
-                //   return true;
-                // } else {
-                //   return false;
-                // }
               },
               cb: rowdata => {
                 this.editFuncForm = rowdata;
@@ -340,13 +335,8 @@ export default {
             },
             {
               text: "删除",
-              visibleFn: rowdata => {
+              visibleFn: () => {
                 return this.adminFilter('menu_function_delete')
-                // if (this.adminOperationAll.menu_function_delete == "TRUE") {
-                //   return true;
-                // } else {
-                //   return false;
-                // }
               },
               cb: rowdata => {
                 this.$confirm("此操作将永久删除该功能, 是否继续?", "提示", {

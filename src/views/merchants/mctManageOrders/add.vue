@@ -222,12 +222,12 @@
               <el-input placeholder="收款人账户号" v-model="addForm.accountNo" auto-complete="off"></el-input>
             </el-form-item>
           </div>
-          <div v-if="enterprise&&private&&unCorporatePerson" class="group-box">
+          <div v-if="enterprise&&privateperson&&unCorporatePerson" class="group-box">
             <el-form-item label="预留手机号" prop="reservedPhoneNo" :label-width="formLabelWidth">
               <el-input placeholder="预留手机号" v-model="addForm.reservedPhoneNo" auto-complete="off"></el-input>
             </el-form-item>
           </div>
-          <div v-if="enterprise&&private" class="group-box">
+          <div v-if="enterprise&&privateperson" class="group-box">
             <el-form-item label="持卡人证件号" prop="settleIdCard" :label-width="formLabelWidth">
               <el-input placeholder="持卡人证件号" v-model="addForm.settleIdCard" auto-complete="off"></el-input>
             </el-form-item>
@@ -296,29 +296,28 @@
       <div class="title-back">上传图片</div>
       <div class="content">
         <div class="upload-group mcp-upload" ref="upImgBox">
-          <upload-img v-if="private" :label="'结算卡照'" :upType="'SETTLE_CARD_IMG'" :imgKey="'settleCardImg'" :defaultImg='imgUrlList.settleCardImg' ref="settleCardImg" :sendData="allImgData" :action="imgUploadAction" :uploadApi="false" @result="saveOneImg"></upload-img>
-          <upload-img v-if="enterprise&&(public)" :label="'开户许可证'" :upType="'ACCOUNT_OPENING_LICENSE'" :imgKey="'accountLicenseImg'" :defaultImg='imgUrlList.accountLicenseImg' ref="accountLicenseImg" :sendData="allImgData" :action="imgUploadAction" :uploadApi="false" @result="saveOneImg"></upload-img>
-          <upload-img v-if="enterprise&&(public||private)" :label="'法人身份证人像面'" :upType="'LEGAL_PERSON_ID_POSITIVE'" :imgKey="'identityFrontImg'" :defaultImg='imgUrlList.identityFrontImg' ref="identityFrontImg" :sendData="allImgData" :action="imgUploadAction" :uploadApi="false" @result="saveOneImg"></upload-img>
-          <upload-img v-if="enterprise&&(public||private)" :label="'法人身份证国徽面'" :upType="'LEGAL_PERSON_ID_BACK'" :imgKey="'identityBackImg'" :defaultImg='imgUrlList.identityBackImg' ref="identityBackImg" :sendData="allImgData" :action="imgUploadAction" :uploadApi="false" @result="saveOneImg"></upload-img>
-          <upload-img v-if="enterprise&&private&&corporatePerson" :label="'法人手持身份证照'" :upType="'APPLICANT_WITH_ID'" :imgKey="'identityHolderImg'" :defaultImg='imgUrlList.identityHolderImg' ref="identityHolderImg" :sendData="allImgData" :action="imgUploadAction" :uploadApi="false" @result="saveOneImg"></upload-img>
-          <upload-img v-if="enterprise&&private&&unCorporatePerson" :label="'法人手持授权书照'" :upType="'HOLD_CERTIFICATE_IMG'" :imgKey="'holdCertificateImg'" :defaultImg='imgUrlList.holdCertificateImg' ref="holdCertificateImg" :sendData="allImgData" :action="imgUploadAction" :uploadApi="false" @result="saveOneImg"></upload-img>
-          <upload-img v-if="enterprise&&(public||private)" :label="'商户营业执照'" :upType="'BUSSINESS_LICENSE'" :imgKey="'bussinessLicenseImg'" :defaultImg='imgUrlList.bussinessLicenseImg' ref="bussinessLicenseImg" :sendData="allImgData" :action="imgUploadAction" :uploadApi="false" @result="saveOneImg"></upload-img>
+          <upload-img v-if="privateperson" :label="'结算卡照'" :upType="'SETTLE_CARD_IMG'" :imgKey="'settleCardImg'" :defaultImg='imgUrlList.settleCardImg' ref="settleCardImg" :sendData="allImgData" :action="imgUploadAction" :uploadApi="false" @result="saveOneImg"></upload-img>
+          <upload-img v-if="enterprise&&(company)" :label="'开户许可证'" :upType="'ACCOUNT_OPENING_LICENSE'" :imgKey="'accountLicenseImg'" :defaultImg='imgUrlList.accountLicenseImg' ref="accountLicenseImg" :sendData="allImgData" :action="imgUploadAction" :uploadApi="false" @result="saveOneImg"></upload-img>
+          <upload-img v-if="enterprise&&(company||privateperson)" :label="'法人身份证人像面'" :upType="'LEGAL_PERSON_ID_POSITIVE'" :imgKey="'identityFrontImg'" :defaultImg='imgUrlList.identityFrontImg' ref="identityFrontImg" :sendData="allImgData" :action="imgUploadAction" :uploadApi="false" @result="saveOneImg"></upload-img>
+          <upload-img v-if="enterprise&&(company||privateperson)" :label="'法人身份证国徽面'" :upType="'LEGAL_PERSON_ID_BACK'" :imgKey="'identityBackImg'" :defaultImg='imgUrlList.identityBackImg' ref="identityBackImg" :sendData="allImgData" :action="imgUploadAction" :uploadApi="false" @result="saveOneImg"></upload-img>
+          <upload-img v-if="enterprise&&privateperson&&corporatePerson" :label="'法人手持身份证照'" :upType="'APPLICANT_WITH_ID'" :imgKey="'identityHolderImg'" :defaultImg='imgUrlList.identityHolderImg' ref="identityHolderImg" :sendData="allImgData" :action="imgUploadAction" :uploadApi="false" @result="saveOneImg"></upload-img>
+          <upload-img v-if="enterprise&&privateperson&&unCorporatePerson" :label="'法人手持授权书照'" :upType="'HOLD_CERTIFICATE_IMG'" :imgKey="'holdCertificateImg'" :defaultImg='imgUrlList.holdCertificateImg' ref="holdCertificateImg" :sendData="allImgData" :action="imgUploadAction" :uploadApi="false" @result="saveOneImg"></upload-img>
+          <upload-img v-if="enterprise&&(company||privateperson)" :label="'商户营业执照'" :upType="'BUSSINESS_LICENSE'" :imgKey="'bussinessLicenseImg'" :defaultImg='imgUrlList.bussinessLicenseImg' ref="bussinessLicenseImg" :sendData="allImgData" :action="imgUploadAction" :uploadApi="false" @result="saveOneImg"></upload-img>
 
-          <upload-img v-if="enterprise&&(private)&&unCorporatePerson" :label="'持卡人身份证人像面照'" :upType="'CARDHOLDER_ID_POSITIVE'" :imgKey="'cardHolderFrontImg'" :defaultImg='imgUrlList.cardHolderFrontImg' ref="cardHolderFrontImg" :sendData="allImgData" :action="imgUploadAction" :uploadApi="false" @result="saveOneImg"></upload-img>
-          <upload-img v-if="enterprise&&(private)&&unCorporatePerson" :label="'持卡人身份证国徽面照'" :upType="'CARDHOLDER_ID_BACK'" :imgKey="'cardHolderBackImg'" :defaultImg='imgUrlList.cardHolderBackImg' ref="cardHolderBackImg" :sendData="allImgData" :action="imgUploadAction" :uploadApi="false" @result="saveOneImg"></upload-img>
-          <upload-img v-if="enterprise&&(private)&&unCorporatePerson" :label="'持卡人手持身份证合影照'" :upType="'CARDHOLDER_WITH_ID'" :imgKey="'cardHolderIdImg'" :defaultImg='imgUrlList.cardHolderIdImg' ref="cardHolderIdImg" :sendData="allImgData" :action="imgUploadAction" :uploadApi="false" @result="saveOneImg"></upload-img>
-          <upload-img v-if="enterprise&&(private)&&unCorporatePerson" :label="'授权书加公章照'" :upType="'CERTIFICATE_IMG'" :imgKey="'certificateImg'" :defaultImg='imgUrlList.certificateImg' ref="certificateImg" :sendData="allImgData" :action="imgUploadAction" :uploadApi="false" @result="saveOneImg"></upload-img>
+          <upload-img v-if="enterprise&&privateperson&&unCorporatePerson" :label="'持卡人身份证人像面照'" :upType="'CARDHOLDER_ID_POSITIVE'" :imgKey="'cardHolderFrontImg'" :defaultImg='imgUrlList.cardHolderFrontImg' ref="cardHolderFrontImg" :sendData="allImgData" :action="imgUploadAction" :uploadApi="false" @result="saveOneImg"></upload-img>
+          <upload-img v-if="enterprise&&privateperson&&unCorporatePerson" :label="'持卡人身份证国徽面照'" :upType="'CARDHOLDER_ID_BACK'" :imgKey="'cardHolderBackImg'" :defaultImg='imgUrlList.cardHolderBackImg' ref="cardHolderBackImg" :sendData="allImgData" :action="imgUploadAction" :uploadApi="false" @result="saveOneImg"></upload-img>
+          <upload-img v-if="enterprise&&privateperson&&unCorporatePerson" :label="'持卡人手持身份证合影照'" :upType="'CARDHOLDER_WITH_ID'" :imgKey="'cardHolderIdImg'" :defaultImg='imgUrlList.cardHolderIdImg' ref="cardHolderIdImg" :sendData="allImgData" :action="imgUploadAction" :uploadApi="false" @result="saveOneImg"></upload-img>
+          <upload-img v-if="enterprise&&privateperson&&unCorporatePerson" :label="'授权书加公章照'" :upType="'CERTIFICATE_IMG'" :imgKey="'certificateImg'" :defaultImg='imgUrlList.certificateImg' ref="certificateImg" :sendData="allImgData" :action="imgUploadAction" :uploadApi="false" @result="saveOneImg"></upload-img>
 
-          <upload-img v-if="enterprise&&(public||private)" :label="'店内照'" :upType="'STORE_IMG'" :imgKey="'storeImg'" :defaultImg='imgUrlList.storeImg' ref="storeImg" :sendData="allImgData" :action="imgUploadAction" :uploadApi="false" @result="saveOneImg"></upload-img>
-          <upload-img v-if="enterprise&&(public||private)" :label="'门头照'" :upType="'PLACE_IMG'" :imgKey="'placeImg'" :defaultImg='imgUrlList.placeImg' ref="placeImg" :sendData="allImgData" :action="imgUploadAction" :uploadApi="false" @result="saveOneImg"></upload-img>
-          <upload-img v-if="enterprise&&(public||private)" :label="'收银台照'" :upType="'CASH_SPACE_IMG'" :imgKey="'cashSpaceImg'" :defaultImg='imgUrlList.cashSpaceImg' ref="cashSpaceImg" :sendData="allImgData" :action="imgUploadAction" :uploadApi="false" @result="saveOneImg"></upload-img>
+          <upload-img v-if="enterprise&&(company||privateperson)" :label="'店内照'" :upType="'STORE_IMG'" :imgKey="'storeImg'" :defaultImg='imgUrlList.storeImg' ref="storeImg" :sendData="allImgData" :action="imgUploadAction" :uploadApi="false" @result="saveOneImg"></upload-img>
+          <upload-img v-if="enterprise&&(company||privateperson)" :label="'门头照'" :upType="'PLACE_IMG'" :imgKey="'placeImg'" :defaultImg='imgUrlList.placeImg' ref="placeImg" :sendData="allImgData" :action="imgUploadAction" :uploadApi="false" @result="saveOneImg"></upload-img>
+          <upload-img v-if="enterprise&&(company||privateperson)" :label="'收银台照'" :upType="'CASH_SPACE_IMG'" :imgKey="'cashSpaceImg'" :defaultImg='imgUrlList.cashSpaceImg' ref="cashSpaceImg" :sendData="allImgData" :action="imgUploadAction" :uploadApi="false" @result="saveOneImg"></upload-img>
 
           <upload-img :label="'其他照片'" :upType="'OTHERS'" :imgKey="'othersImg'" :defaultImg='imgUrlList.othersImg' ref="othersImg" :sendData="allImgData" :action="imgUploadAction" :uploadApi="false" @result="saveOneImg"></upload-img>
         </div>
       </div>
     </div>
 
-    </div>
   </el-form>
 
 </template>
@@ -499,13 +498,9 @@ import Vue from "vue";
 import IScrollView from "vue-iscroll-view";
 import IScroll from "iscroll";
 Vue.use(IScrollView, IScroll);
-import imageView from 'vue-imageview'
-import LargeimgView from '@src/components/LargeimgView'
-import ScrollPane from "@src/components/ScrollPane";
 // 组件end
 import "@src/common/filters";
 import { areaOrgcode } from "@src/common/orgcode";
-import add from "./add";
 // table页与搜索页公用功能
 import { mixinsPc } from "@src/common/mixinsPc";
 import utils from "@src/common/utils";
@@ -516,12 +511,11 @@ import {
   getMctManageOrdersAdd,
   getBankList
 } from "@src/apis";
-import qs from "qs";
 import UploadImg from "@src/components/UploadImg";
 import bussinessTypeJson from "@src/data/bussinessType.json";
 import { banks } from "@src/common/bank";
 import settleMode from "@src/data/settleMode.json";
-import { taxNumVerify, idCardVerify, phoneNumVerify, idCardVerify_r } from "@src/common/regexp";
+import { } from "@src/common/regexp";
 export default {
   name: "mer_manage_orders",
   props: {
@@ -546,8 +540,8 @@ export default {
       unCorporatePerson: false,//非法人
       enterprise: true,//企业
       personal: true,// 个人
-      public: true,// 对公
-      private: true,// 对私
+      company: true,// 对公
+      privateperson: true,// 对私
       companyNoDisabled: false,
       settleIdCardVisible: true,
       restaurants: [],
@@ -741,7 +735,7 @@ export default {
   },
   methods: {
     senImgAllHandle(agentNo, getData) {
-      for (let [imgType, imgObj] of Object.entries(this.senImgAll)) {
+      for (let [imgObj] of Object.entries(this.senImgAll)) {
         let imgId = imgObj.id;
         if (getData[imgId]) {
           this.searchImg(agentNo, getData[imgId])
@@ -772,7 +766,6 @@ export default {
             getImages = JSON.parse(getImages);
             let imgType = getImages.imgType;
             let imgString = getImages.imgString;
-            let imgId = this.senImgAll[imgType].id;
             let imgRef = this.senImgAll[imgType].ref;
             this.$nextTick(() => {
               this.$refs[imgRef].setImg('data:image/png;base64,' + imgString);
@@ -894,7 +887,7 @@ export default {
         //     'cashSpaceImgId',//收银台照片
         //     'settleCardImgId',//结算卡照片
         //   ]));
-        //   if (this.public) {
+        //   if (this.company) {
         //     //对公
         //     newAddForm = Object.assign(newAddForm, utils.pickObj(this.addForm, [
         //       "bussinessAddressId",//商户经营地址
@@ -905,7 +898,7 @@ export default {
         //       // 图片
         //     ]))
         //   }
-        //   if (this.private) {
+        //   if (this.privateperson) {
         //     //对私
         //     newAddForm = Object.assign(newAddForm, utils.pickObj(this.addForm, [
         //       "settleIdCard" //持卡人证件号
@@ -1111,7 +1104,7 @@ export default {
       this.bankCode = value;
       this.getBankListHandle();
     },
-    getBankListHandle(back) {
+    getBankListHandle() {
       this.addForm.unionCode = "";
       // 获取支行
       if (this.bankCode && this.bankCity) {
@@ -1253,8 +1246,8 @@ export default {
     relationship() {
       this.enterprise = false;//企业
       this.personal = false;//个人
-      this.public = false;// 对公
-      this.private = false;// 对私
+      this.company = false;// 对公
+      this.privateperson = false;// 对私
       this.corporatePerson = false;// 法人
       this.unCorporatePerson = false;//非法人
       let addForm = this.addForm;
@@ -1271,15 +1264,15 @@ export default {
       if (customerType == 1) {
         // 企业
         this.enterprise = true;
-        if (this.addForm.accountType == 0) {
+        if (accountType == 0) {
           // 对公
-          this.public = true;
+          this.company = true;
           this.accountNameDis = true;
           accountName = addForm.enterpriseName;
         }
-        if (this.addForm.accountType == 1) {
+        if (accountType == 1) {
           // 对私
-          this.private = true;
+          this.privateperson = true;
           this.addForm.settleIdCard = this.addForm.idCard;//设置结算人证件号码
           accountName = addForm.accountName == addForm.enterpriseName ? addForm.legalPerson : addForm.accountName || addForm.legalPerson;
           this.accountNameDis = false;
@@ -1377,21 +1370,12 @@ export default {
         localStorage.setItem("mctManageOrdersVersion", val);
       }
     },
-    "addForm.customerType"(val) {
-      // if (val == 0) {
-      //   this.enterprise = false;
-      //   this.personal = true;
-      //   this.addForm.bussinessName = this.addForm.enterpriseName;
-      // }
-      // if (val == 1) {
-      //   this.enterprise = true;
-      //   this.personal = false;
-      // }
+    "addForm.customerType"() {
       this.relationship();
       this.clearValidate();
     },
     //账户类型
-    "addForm.accountType"(val) {
+    "addForm.accountType"() {
       this.relationship();
     }
   },
