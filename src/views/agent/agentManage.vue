@@ -379,7 +379,7 @@ import DataPage from "@src/components/DataPage";
 // table页与搜索页公用功能
 import { mixinDataTable } from "@src/components/DataPage/dataPage";
 import { mixinsPc } from "@src/common/mixinsPc";
-import { todayStr } from "@src/common/dateSerialize";
+import { } from "@src/common/dateSerialize";
 import { phoneNumVerify } from "@src/common/regexp";
 import utils from "@src/common/utils"
 // 省市区一转三格式
@@ -391,7 +391,6 @@ import {
   getAgentManages,
   postAddAgentManage,
   postEditAgentManage,
-  postDeleteAgent,
   getBankList,
   postEditChange // 编辑权限
 } from "@src/apis";
@@ -764,7 +763,7 @@ export default {
       this.bankCode = value;
       this.getBankListHandle();
     },
-    getBankListHandle(back) {
+    getBankListHandle() {
       // 获取支行
       this.addForm.unionCode = "";
       this.editForm.unionCode = "";

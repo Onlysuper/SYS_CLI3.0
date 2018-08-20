@@ -3,11 +3,9 @@
   <div class="admin-page">
     <div class="admin-main-box">
       <!-- search form start -->
-      <myp-search-form @changeform="callbackformHandle" @resetInput="resetSearchHandle" @visiblesome="visiblesomeHandle" @changeSearchVisible="changeSearchVisible"
-        @seachstart="seachstartHandle" :searchOptions="searchOptions"></myp-search-form>
+      <myp-search-form @changeform="callbackformHandle" @resetInput="resetSearchHandle" @visiblesome="visiblesomeHandle" @changeSearchVisible="changeSearchVisible" @seachstart="seachstartHandle" :searchOptions="searchOptions"></myp-search-form>
       <!-- search form end -->
-      <myp-data-page :actionUrl="actionUrl" @pagecount="pagecountHandle" @pagelimit="pagelimitHandle" @operation="operationHandle"
-        ref="dataTable" :tableDataInit="tableData" :page="postPage" :limit="postLimit" :search="postSearch"></myp-data-page>
+      <myp-data-page :actionUrl="actionUrl" @pagecount="pagecountHandle" @pagelimit="pagelimitHandle" @operation="operationHandle" ref="dataTable" :tableDataInit="tableData" :page="postPage" :limit="postLimit" :search="postSearch"></myp-data-page>
     </div>
     <!-- 详情 start -->
     <el-dialog v-dialogDrag title="详情" center :visible.sync="detailsFormVisible">
@@ -174,332 +172,330 @@
 
 </template>
 <style lang="scss">
-  .downLoad-text {
-    a {
-      color: #fff;
-      text-decoration: none;
-    }
+.downLoad-text {
+  a {
+    color: #fff;
+    text-decoration: none;
   }
+}
 </style>
 <!-- Add "scoped" attribute to limit CSS to this component only -->
 <script>
-  import invoiceType from "@src/data/invoiceType.json";
-  import SearchForm from "@src/components/SearchForm";
-  import DataPage from "@src/components/DataPage";
-  // table页与搜索页公用功能
-  import { mixinsPc } from "@src/common/mixinsPc";
-  import { mixinDataTable } from "@src/components/DataPage/dataPage";
-  import {
-    yesterdayStr,
-    yesterday_,
-    today_,
-    todayStr
-  } from "@src/common/dateSerialize";
-  import { taxNumVerify, idCardVerify, phoneNumVerify } from "@src/common/regexp";
-  import { getBillrecords, postEditBillrecord } from "@src/apis";
-  import utils from "@src/common/utils"
-  export default {
-    name: "billrecord",
-    components: {
-      "myp-search-form": SearchForm, // 搜索组件
-      "myp-data-page": DataPage // 数据列表组件
-    },
-    mixins: [mixinDataTable, mixinsPc],
-    data() {
-      var searchConditionVar = {
-        customerNo: "", // 商户编号
-        authCode: "", // 授权码
-        invoiceType: "", // 开票类型
-        createTimeStart: todayStr, // 开始时间
-        createTimeEnd: todayStr, // 结束时间
-        status: "" // 状态
-      };
-      return {
-        detailsFormVisible: false, // 详情框
-        editFormVisible: false, // 编辑框
-        downLoadVisible: false,
-        formLabelWidth: "100px",
-        editFormRules: {}, // 编辑单个规则
-        editForm: {}, // 编辑单个表单
-        detailsForm: {}, // 详情单个表单
-        // 查询条件数据
-        searchCondition: searchConditionVar,
-        // 顶部搜索表单信息
-        searchOptions: {
-          lableWidth: "100px",
-          searchList: [
-            // 请注意 该数组里对象的corresattr属性值与searchCondition里面的属性是一一对应的 不可少
-            {
-              corresattr: "customerNo",
-              type: "text", // 表单类型
-              label: "商户编号", // 输入框前面的文字
-              show: true, // 普通搜索显示
-              defaultVlue: "", // 表单默认的内容
-              value: "", // 表单默认的内容
-              cb: value => {
-                // 表单输入之后回调函数
-                this.searchCondition.customerNo = value;
-              }
-            },
-            {
-              corresattr: "status",
-              type: "select",
-              label: "状态",
-              show: true, // 普通搜索显示
-              defaultVlue: "",
-              value: "",
-              options: [
-                {
-                  value: "",
-                  label: "全部"
-                },
-                ...this.statusFilterQuery('payStatus')
-              ],
-              cb: value => {
-                this.searchCondition.status = value;
-              }
-            },
-            {
-              type: "dateGroup",
-              label: "选择时间",
-              show: true, // 普通搜索显示
-              options: [
-                {
-                  corresattr: "createTimeStart",
-                  label: "开始时间",
-                  defaultVlue: todayStr,
-                  value: today_,
-                  cb: value => {
-                    this.searchCondition.createTimeStart = value;
-                  }
-                },
-                {
-                  corresattr: "createTimeEnd",
-                  lable: "结束时间",
-                  defaultVlue: todayStr,
-                  value: today_,
-                  cb: value => {
-                    this.searchCondition.createTimeEnd = value;
-                  }
-                }
-              ]
-            },
-            {
-              corresattr: "authCode",
-              type: "text",
-              label: "授权码",
-              show: false, // 普通搜索显示
-              defaultVlue: "",
-              value: "",
-              cb: value => {
-                this.searchCondition.authCode = value;
-              }
-            },
-            {
-              corresattr: "invoiceType",
-              type: "select",
-              label: "开票类型",
-              show: false, // 普通搜索显示
-              defaultVlue: "",
-              value: "",
-              options: [
-                {
-                  value: "",
-                  label: "所有"
-                },
-                ...invoiceType.map(item => { return { label: item.name, value: item.code } })
-              ],
-              cb: value => {
-                this.searchCondition.invoiceType = value;
-              }
+import invoiceType from "@src/data/invoiceType.json";
+import SearchForm from "@src/components/SearchForm";
+import DataPage from "@src/components/DataPage";
+// table页与搜索页公用功能
+import { mixinsPc } from "@src/common/mixinsPc";
+import { mixinDataTable } from "@src/components/DataPage/dataPage";
+import {
+  today_,
+  todayStr
+} from "@src/common/dateSerialize";
+import { } from "@src/common/regexp";
+import { getBillrecords, postEditBillrecord } from "@src/apis";
+import utils from "@src/common/utils"
+export default {
+  name: "billrecord",
+  components: {
+    "myp-search-form": SearchForm, // 搜索组件
+    "myp-data-page": DataPage // 数据列表组件
+  },
+  mixins: [mixinDataTable, mixinsPc],
+  data() {
+    var searchConditionVar = {
+      customerNo: "", // 商户编号
+      authCode: "", // 授权码
+      invoiceType: "", // 开票类型
+      createTimeStart: todayStr, // 开始时间
+      createTimeEnd: todayStr, // 结束时间
+      status: "" // 状态
+    };
+    return {
+      detailsFormVisible: false, // 详情框
+      editFormVisible: false, // 编辑框
+      downLoadVisible: false,
+      formLabelWidth: "100px",
+      editFormRules: {}, // 编辑单个规则
+      editForm: {}, // 编辑单个表单
+      detailsForm: {}, // 详情单个表单
+      // 查询条件数据
+      searchCondition: searchConditionVar,
+      // 顶部搜索表单信息
+      searchOptions: {
+        lableWidth: "100px",
+        searchList: [
+          // 请注意 该数组里对象的corresattr属性值与searchCondition里面的属性是一一对应的 不可少
+          {
+            corresattr: "customerNo",
+            type: "text", // 表单类型
+            label: "商户编号", // 输入框前面的文字
+            show: true, // 普通搜索显示
+            defaultVlue: "", // 表单默认的内容
+            value: "", // 表单默认的内容
+            cb: value => {
+              // 表单输入之后回调函数
+              this.searchCondition.customerNo = value;
             }
-          ]
-        },
-        // 列表数据
-        actionUrl: getBillrecords,
-        postSearch: searchConditionVar,
-        tableData: {
-          // getDataUrl: {
-          //   url: getBillrecords // 初始化数据
-          // },
-          havecheck: false, //是否显示选择框
-          dataHeader: [
-            // table列信息 key=>表头标题，word=>表内容信息
-            {
-              key: "开票时间",
-              width: "170px",
-              sortable: true,
-              word: "createTime"
-            },
-            {
-              key: "商户编号",
-              width: "100px",
-              word: "customerNo"
-            },
-            {
-              key: "经营名称",
-              width: "150px",
-              word: "bussinessName"
-            },
-            //  {{#  if(  d.invoiceMedia == 'PAPERY'&&d.billType == 1  ){ }}
-            //     <span class="layui-btn layui-btn-mini">普票</span>
-            //     {{#  } else if(d.invoiceMedia == 'PAPERY'&&d.billType == 2 ){ }}
-            //     <span class="layui-btn layui-btn-mini">专票</span>
-            //     {{#  } else if(d.invoiceMedia == 'PAPERY'&&d.billType == 3 ){ }}
-            //     <span class="layui-btn layui-btn-mini">普票(个人)</span>
-            //     {{#  } else if(d.invoiceMedia == 'ELECTRONIC' ){ }}
-            //     <span class="layui-btn layui-btn-mini">电票</span>
-            //     {{#  } }}
-            {
-              key: "开票类型",
-              width: "96px",
-              word: "billType",
-              status: true,
-              type: (data, row) => {
-                if (row.invoiceMedia == 'PAPERY' && data == "1") {
-                  return {
-                    text: "普票",
-                    type: "success"
-                  };
-                } else if (row.invoiceMedia == 'PAPERY' && data == "2") {
-                  return {
-                    text: "专票",
-                    type: "danger"
-                  };
-                } else if (row.invoiceMedia == 'PAPERY' && data == "3") {
-                  return {
-                    text: "普票(个人)",
-                    type: "warning"
-                  };
-                } else if (row.invoiceMedia == 'ELECTRONIC') {
-                  return {
-                    text: "电票",
-                    type: ""
-                  };
-                } else {
-                  return {
-                    text: data,
-                    type: "danger"
-                  };
-                }
-              }
-            },
-            {
-              key: "状态",
-              width: "120px",
-              word: "status",
-              status: true,
-              type: data => {
-                return this.statusFilter(data, 'payStatus')
-              }
-            },
-            {
-              key: "购方",
-              width: "180px",
-              word: "enterpriseName"
-            },
-            { key: "税号", word: "taxNo", width: "200px" }
-          ],
-          operation: {
-            width: "120px",
+          },
+          {
+            corresattr: "status",
+            type: "select",
+            label: "状态",
+            show: true, // 普通搜索显示
+            defaultVlue: "",
+            value: "",
             options: [
-              // 操作按钮
               {
-                text: "详情",
-                color: "#1890ff",
-                cb: rowdata => {
-                  this.detailsForm = rowdata;
-                  this.detailsForm.billAmount = this.detailsForm.billAmount ? this.detailsForm.billAmount : 0;
-                  this.detailsForm.totalTax = this.detailsForm.totalTax ? this.detailsForm.totalTax : 0;
-                  if (rowdata.status == "BILLING_SUCCESS" && rowdata.invoiceMedia == 'ELECTRONIC') {
-                    this.downLoadVisible = true;
-                  } else {
-                    this.downLoadVisible = false;
-                  }
-                  this.detailsFormVisible = true;
+                value: "",
+                label: "全部"
+              },
+              ...this.statusFilterQuery('payStatus')
+            ],
+            cb: value => {
+              this.searchCondition.status = value;
+            }
+          },
+          {
+            type: "dateGroup",
+            label: "选择时间",
+            show: true, // 普通搜索显示
+            options: [
+              {
+                corresattr: "createTimeStart",
+                label: "开始时间",
+                defaultVlue: todayStr,
+                value: today_,
+                cb: value => {
+                  this.searchCondition.createTimeStart = value;
                 }
               },
               {
-                text: "编辑",
-                color: "#1890ff",
-                cb: rowdata => {
-                  this.editForm = rowdata;
-                  this.editFormVisible = true;
+                corresattr: "createTimeEnd",
+                lable: "结束时间",
+                defaultVlue: todayStr,
+                value: today_,
+                cb: value => {
+                  this.searchCondition.createTimeEnd = value;
                 }
               }
             ]
+          },
+          {
+            corresattr: "authCode",
+            type: "text",
+            label: "授权码",
+            show: false, // 普通搜索显示
+            defaultVlue: "",
+            value: "",
+            cb: value => {
+              this.searchCondition.authCode = value;
+            }
+          },
+          {
+            corresattr: "invoiceType",
+            type: "select",
+            label: "开票类型",
+            show: false, // 普通搜索显示
+            defaultVlue: "",
+            value: "",
+            options: [
+              {
+                value: "",
+                label: "所有"
+              },
+              ...invoiceType.map(item => { return { label: item.name, value: item.code } })
+            ],
+            cb: value => {
+              this.searchCondition.invoiceType = value;
+            }
           }
-        }
-      };
-    },
-    methods: {
-      resetAddForm(formName) {
-        this.$refs[formName].resetFields();
+        ]
       },
-      // downLoad(pdfUrl) {
-      //   this.$refs.dataTable.ExportExcel(pdfUrl, "download", false, true);
-      // },
-      editSave(formName) {
-        // 编辑内容保存
-        this.$refs[formName].validate(valid => {
-          if (valid) {
-            let editForm = this.editForm;
-            let sendata = utils.pickObj(editForm, [
-              "billRecordNo", 'orderNo', 'status', 'invoiceCode', 'invoiceNo',
-              'totalTax', 'phoneNo', 'taxNo', 'enterpriseAddress', 'bankName',
-              'bankAccountNo', 'companyPhone', 'bussinessName', 'billAmount',
-              'enterpriseName'
-            ]);
-            this.saveLoading = true;
-            postEditBillrecord()({ ...sendata }).then(data => {
-              if (data.code === "00") {
-                this.$message({
-                  message: "恭喜你，修改数据成功",
-                  type: "success",
-                  center: true
-                });
-                this.editFormVisible = false;
-                this.reloadData();
+      // 列表数据
+      actionUrl: getBillrecords,
+      postSearch: searchConditionVar,
+      tableData: {
+        // getDataUrl: {
+        //   url: getBillrecords // 初始化数据
+        // },
+        havecheck: false, //是否显示选择框
+        dataHeader: [
+          // table列信息 key=>表头标题，word=>表内容信息
+          {
+            key: "开票时间",
+            width: "170px",
+            sortable: true,
+            word: "createTime"
+          },
+          {
+            key: "商户编号",
+            width: "100px",
+            word: "customerNo"
+          },
+          {
+            key: "经营名称",
+            width: "150px",
+            word: "bussinessName"
+          },
+          //  {{#  if(  d.invoiceMedia == 'PAPERY'&&d.billType == 1  ){ }}
+          //     <span class="layui-btn layui-btn-mini">普票</span>
+          //     {{#  } else if(d.invoiceMedia == 'PAPERY'&&d.billType == 2 ){ }}
+          //     <span class="layui-btn layui-btn-mini">专票</span>
+          //     {{#  } else if(d.invoiceMedia == 'PAPERY'&&d.billType == 3 ){ }}
+          //     <span class="layui-btn layui-btn-mini">普票(个人)</span>
+          //     {{#  } else if(d.invoiceMedia == 'ELECTRONIC' ){ }}
+          //     <span class="layui-btn layui-btn-mini">电票</span>
+          //     {{#  } }}
+          {
+            key: "开票类型",
+            width: "96px",
+            word: "billType",
+            status: true,
+            type: (data, row) => {
+              if (row.invoiceMedia == 'PAPERY' && data == "1") {
+                return {
+                  text: "普票",
+                  type: "success"
+                };
+              } else if (row.invoiceMedia == 'PAPERY' && data == "2") {
+                return {
+                  text: "专票",
+                  type: "danger"
+                };
+              } else if (row.invoiceMedia == 'PAPERY' && data == "3") {
+                return {
+                  text: "普票(个人)",
+                  type: "warning"
+                };
+              } else if (row.invoiceMedia == 'ELECTRONIC') {
+                return {
+                  text: "电票",
+                  type: ""
+                };
               } else {
-                this.$message({
-                  message: data.msg,
-                  type: "warning",
-                  center: true
-                });
+                return {
+                  text: data,
+                  type: "danger"
+                };
               }
-              console.log(data);
-              this.saveLoading = false;
-            });
-          }
-        });
-      },
-      downLoadpdf(url) {
-        this.$refs.dataTable.ExportExcelDIR(url);
-      }
-    },
-    computed: {
-      editFormCustomerFrom() {
-        // 表单内用户来源显示状态客户来源
-        if (this.editForm.customerFrom == "OPEN_API") {
-          return "第三方";
-        } else if (this.editForm.customerFrom == "PLUGIN") {
-          return "插件";
-        } else if (this.editForm.customerFrom == "LOCAL") {
-          return "后台";
+            }
+          },
+          {
+            key: "状态",
+            width: "120px",
+            word: "status",
+            status: true,
+            type: data => {
+              return this.statusFilter(data, 'payStatus')
+            }
+          },
+          {
+            key: "购方",
+            width: "180px",
+            word: "enterpriseName"
+          },
+          { key: "税号", word: "taxNo", width: "200px" }
+        ],
+        operation: {
+          width: "120px",
+          options: [
+            // 操作按钮
+            {
+              text: "详情",
+              color: "#1890ff",
+              cb: rowdata => {
+                this.detailsForm = rowdata;
+                this.detailsForm.billAmount = this.detailsForm.billAmount ? this.detailsForm.billAmount : 0;
+                this.detailsForm.totalTax = this.detailsForm.totalTax ? this.detailsForm.totalTax : 0;
+                if (rowdata.status == "BILLING_SUCCESS" && rowdata.invoiceMedia == 'ELECTRONIC') {
+                  this.downLoadVisible = true;
+                } else {
+                  this.downLoadVisible = false;
+                }
+                this.detailsFormVisible = true;
+              }
+            },
+            {
+              text: "编辑",
+              color: "#1890ff",
+              cb: rowdata => {
+                this.editForm = rowdata;
+                this.editFormVisible = true;
+              }
+            }
+          ]
         }
       }
+    };
+  },
+  methods: {
+    resetAddForm(formName) {
+      this.$refs[formName].resetFields();
     },
-    mounted() { },
-    watch: {
-      detailsFormVisible(val) {
-        this.saveLoadingStop(val);
-      },
-      editFormVisible(val) {
-        this.saveLoadingStop(val);
-      },
-      downLoadVisible(val) {
-        this.saveLoadingStop(val);
-      },
+    // downLoad(pdfUrl) {
+    //   this.$refs.dataTable.ExportExcel(pdfUrl, "download", false, true);
+    // },
+    editSave(formName) {
+      // 编辑内容保存
+      this.$refs[formName].validate(valid => {
+        if (valid) {
+          let editForm = this.editForm;
+          let sendata = utils.pickObj(editForm, [
+            "billRecordNo", 'orderNo', 'status', 'invoiceCode', 'invoiceNo',
+            'totalTax', 'phoneNo', 'taxNo', 'enterpriseAddress', 'bankName',
+            'bankAccountNo', 'companyPhone', 'bussinessName', 'billAmount',
+            'enterpriseName'
+          ]);
+          this.saveLoading = true;
+          postEditBillrecord()({ ...sendata }).then(data => {
+            if (data.code === "00") {
+              this.$message({
+                message: "恭喜你，修改数据成功",
+                type: "success",
+                center: true
+              });
+              this.editFormVisible = false;
+              this.reloadData();
+            } else {
+              this.$message({
+                message: data.msg,
+                type: "warning",
+                center: true
+              });
+            }
+            console.log(data);
+            this.saveLoading = false;
+          });
+        }
+      });
+    },
+    downLoadpdf(url) {
+      this.$refs.dataTable.ExportExcelDIR(url);
     }
-  };
+  },
+  computed: {
+    editFormCustomerFrom() {
+      // 表单内用户来源显示状态客户来源
+      if (this.editForm.customerFrom == "OPEN_API") {
+        return "第三方";
+      } else if (this.editForm.customerFrom == "PLUGIN") {
+        return "插件";
+      } else if (this.editForm.customerFrom == "LOCAL") {
+        return "后台";
+      }
+    }
+  },
+  mounted() { },
+  watch: {
+    detailsFormVisible(val) {
+      this.saveLoadingStop(val);
+    },
+    editFormVisible(val) {
+      this.saveLoadingStop(val);
+    },
+    downLoadVisible(val) {
+      this.saveLoadingStop(val);
+    },
+  }
+};
 </script>
