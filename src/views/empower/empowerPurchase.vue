@@ -116,7 +116,6 @@
 <style lang='scss' scoped>
 </style>
 <script>
-import $ from "jquery";
 import SearchForm from "@src/components/SearchForm";
 import DataPage from "@src/components/DataPage";
 // table页与搜索页公用功能
@@ -350,9 +349,8 @@ export default {
             width: "120px",
             word: "receiptType",
             status: true,
-            type: (data, row) => {
+            type: (data) => {
               return this.statusFilter(data, 'empowerCheckReceiptType')
-
             }
           },
           {
@@ -374,7 +372,7 @@ export default {
             width: "120px",
             word: "isPrint",
             status: true,
-            type: (data, row) => {
+            type: (data) => {
               return this.statusFilter(data, 'empowerCheckIsPrint')
             }
           }
@@ -448,7 +446,7 @@ export default {
           ]
         },
         // 数据加载成功
-        dataSuccess: data => { }
+        // dataSuccess: data => { }
       }
     };
   },

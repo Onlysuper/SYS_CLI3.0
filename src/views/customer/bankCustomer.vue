@@ -57,7 +57,6 @@ import DataPage from "@src/components/DataPage";
 import { mixinsPc } from "@src/common/mixinsPc";
 // table页与搜索页公用功能
 import { mixinDataTable } from "@src/components/DataPage/dataPage";
-import utils from "@src/common/utils";
 import {
   getbankCustomers
 } from "@src/apis";

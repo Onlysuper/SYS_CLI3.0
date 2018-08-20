@@ -150,7 +150,6 @@
 }
 </style>
 <script>
-import $ from "jquery";
 import SearchForm from "@src/components/SearchForm";
 import DataPage from "@src/components/DataPage";
 // table页与搜索页公用功能
@@ -473,7 +472,7 @@ export default {
           ]
         },
         // 数据加载成功
-        dataSuccess: data => { }
+        // dataSuccess: data => { }
       }
     };
   },

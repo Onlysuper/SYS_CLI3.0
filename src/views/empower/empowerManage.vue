@@ -306,7 +306,6 @@
 <script>
 import $ from "jquery";
 import QRCode from "qrcode";
-import qs from "qs";
 import SearchForm from "@src/components/SearchForm";
 import DataPage from "@src/components/DataPage";
 
@@ -318,8 +317,6 @@ import { todayStr, today_ } from "@src/common/dateSerialize";
 import {
   getArantNumManages,
   postMakeEmpower,
-  postScanMakeMateriel,
-  postMakeMateriel,
   postEditEmpower,
   postBindEmpower,
   postUnBindEmpower,
@@ -443,8 +440,8 @@ export default {
         qrcodeStart: [
           { required: true, message: "号段起始号码不能为空", trigger: "blur,change" }
         ],
-        qrcodeStart: [
-          { required: true, message: "号段起始号码不能为空", trigger: "blur,change" }
+        qrcodeEnd: [
+          { required: true, message: "号段结束号码不能为空", trigger: "blur,change" }
         ],
         migrateType: [
           { required: true, message: "请选择入库方式", trigger: "blur,change" }
@@ -866,9 +863,6 @@ export default {
             {
               stateName: "status",
               opposite: false,
-              visibleFn: rowdata => {
-                return true;
-              },
               text: "解绑",
               color: "#F56C6C",
               visibleFn: rowdata => {
@@ -992,14 +986,14 @@ export default {
     // 授权码保存
     empoverCodeSave(formName) {
       this.$refs[formName].validate(valid => {
-        let addForm = this.addForm;
+        // let addForm = this.addForm;
         if (valid) {
           this.saveLoading = true;
           let empoverCodeForm = this.empoverCodeForm;
           let supportTypes1 = "";
           let supportTypes2 = "";
           let supportTypes3 = "";
-          empoverCodeForm.supportTypes.forEach((element, index) => {
+          empoverCodeForm.supportTypes.forEach((element) => {
             if (element == "普票") {
               supportTypes1 = 1;
             } else if (element == "专票") {
@@ -1116,7 +1110,7 @@ export default {
           let supportTypes1 = "";
           let supportTypes2 = "";
           let supportTypes3 = "";
-          thisForm.supportTypes.forEach((element, index) => {
+          thisForm.supportTypes.forEach((element) => {
             if (element == "普票") {
               supportTypes1 = 1;
             } else if (element == "专票") {
@@ -1223,7 +1217,7 @@ export default {
         }
       });
     },
-    batchBindUploadSuccess(res, file) {
+    batchBindUploadSuccess(res) {
       // 文件上传成功
       if (res.data == "00") {
         this.$message.success("恭喜您！上传成功");
@@ -1238,7 +1232,7 @@ export default {
       this.batchBindVisible = false;
       this.saveLoading = false;
     },
-    uploadFilleError(response, file, fileList) {
+    uploadFilleError() {
       this.$message({
         message: "很抱歉，上传失败！",
         type: "warning",

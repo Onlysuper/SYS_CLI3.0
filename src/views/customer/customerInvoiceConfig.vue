@@ -349,12 +349,7 @@ export default {
       });
     }
   },
-  computed: {
-    oaIp() {
-      // nginx配置的路由
-      return this.$store.state.Base.oaIp;
-    }
-  },
+
   watch: {
     addFormVisible(val) {
       this.saveLoadingStop(val);
@@ -364,6 +359,10 @@ export default {
     }
   },
   computed: {
+    oaIp() {
+      // nginx配置的路由
+      return this.$store.state.Base.oaIp;
+    },
     dialogTitle() {
       if (this.isAdd) {
         return "新增开票配置"

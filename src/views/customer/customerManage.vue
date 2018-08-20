@@ -3,24 +3,18 @@
   <div class="admin-page">
     <div class="admin-main-box">
       <!-- search form start -->
-      <myp-search-form @changeform="callbackformHandle" @resetInput="resetSearchHandle" @visiblesome="visiblesomeHandle" @changeSearchVisible="changeSearchVisible"
-        @seachstart="seachstartHandle" :searchOptions="searchOptions"></myp-search-form>
+      <myp-search-form @changeform="callbackformHandle" @resetInput="resetSearchHandle" @visiblesome="visiblesomeHandle" @changeSearchVisible="changeSearchVisible" @seachstart="seachstartHandle" :searchOptions="searchOptions"></myp-search-form>
       <!-- search form end -->
       <div class="operation-box">
         <el-button-group class="button-group">
-          <el-button v-if="adminFilter('customer_add')" class="mybutton" @click="showDialog('addFormVisible')" size="small" type="primary"
-            icon="el-icon-plus">新增</el-button>
-          <el-button v-if="adminFilter('customer_incomeBatch')" size="small" @click="showDialog('batchNetFormVisible')" type="primary"
-            icon="el-icon-upload">批量入网</el-button>
-          <el-button v-if="adminFilter('customer_transBatch')" size="small" @click="showDialog('batchTransferFormVisible')" type="primary"
-            icon="el-icon-sort">批量转移</el-button>
-          <el-button v-if="adminFilter('customer_electronicOpen')" size="small" @click="showDialog('electronicOpenFormVisible')" type="primary"
-            icon="el-icon-sort">商户电票开通</el-button>
+          <el-button v-if="adminFilter('customer_add')" class="mybutton" @click="showDialog('addFormVisible')" size="small" type="primary" icon="el-icon-plus">新增</el-button>
+          <el-button v-if="adminFilter('customer_incomeBatch')" size="small" @click="showDialog('batchNetFormVisible')" type="primary" icon="el-icon-upload">批量入网</el-button>
+          <el-button v-if="adminFilter('customer_transBatch')" size="small" @click="showDialog('batchTransferFormVisible')" type="primary" icon="el-icon-sort">批量转移</el-button>
+          <el-button v-if="adminFilter('customer_electronicOpen')" size="small" @click="showDialog('electronicOpenFormVisible')" type="primary" icon="el-icon-sort">商户电票开通</el-button>
           <el-button v-if="adminFilter('customer_export')" size="small" @click="exportDialog" type="primary" icon="el-icon-upload2">导出</el-button>
         </el-button-group>
       </div>
-      <myp-data-page :actionUrl="actionUrl" @pagecount="pagecountHandle" @pagelimit="pagelimitHandle" @operation="operationHandle"
-        ref="dataTable" :tableDataInit="tableData" :page="postPage" :limit="postLimit" :search="postSearch"></myp-data-page>
+      <myp-data-page :actionUrl="actionUrl" @pagecount="pagecountHandle" @pagelimit="pagelimitHandle" @operation="operationHandle" ref="dataTable" :tableDataInit="tableData" :page="postPage" :limit="postLimit" :search="postSearch"></myp-data-page>
     </div>
     <!-- 新增start -->
     <el-dialog v-dialogDrag center title="新增商户" :visible.sync="addFormVisible">
@@ -170,10 +164,7 @@
           </div>
           <div class="sep-inline">
             <el-form-item label="" prop="batchNet" :label-width="formLabelWidth">
-              <el-upload :file-list="fileList" :with-credentials="true" ref="batchnetFile" :headers='{"X-requested-With": "XMLHttpRequest"}'
-                :limit="1" :on-exceed="handleExceed" :on-preview="handlePreview" :on-remove="handleRemove" :auto-upload="false"
-                :action="oaIp+'/customer/incomeBatch'" :on-success="handleBatchNetSuccess" :before-upload="beforeBatchNetUpload"
-                class="upload-demo" drag>
+              <el-upload :file-list="fileList" :with-credentials="true" ref="batchnetFile" :headers='{"X-requested-With": "XMLHttpRequest"}' :limit="1" :on-exceed="handleExceed" :on-preview="handlePreview" :on-remove="handleRemove" :auto-upload="false" :action="oaIp+'/customer/incomeBatch'" :on-success="handleBatchNetSuccess" :before-upload="beforeBatchNetUpload" class="upload-demo" drag>
                 <i class="el-icon-upload"></i>
                 <div class="el-upload__text">将入网文件拖到此处，或
                   <em>点击上传</em>
@@ -197,9 +188,7 @@
           <a class="link-Label" :href="oaIp+'/static/template/trans-batch-2007.xlsx'">下载转移模板</a>
         </div>
         <div class="sep-inline">
-          <el-upload :with-credentials="true" :headers='{"X-requested-With": "XMLHttpRequest"}' ref="batchtransferFile" :limit="1"
-            :on-exceed="handleExceed" :auto-upload="false" :action="oaIp+'/customer/transBatch'" class="upload-demo" drag :on-success="handleBatchTransferSuccess"
-            :before-upload="beforeBatchNetUpload">
+          <el-upload :with-credentials="true" :headers='{"X-requested-With": "XMLHttpRequest"}' ref="batchtransferFile" :limit="1" :on-exceed="handleExceed" :auto-upload="false" :action="oaIp+'/customer/transBatch'" class="upload-demo" drag :on-success="handleBatchTransferSuccess" :before-upload="beforeBatchNetUpload">
             <i class="el-icon-upload"></i>
             <div class="el-upload__text">将需要转移的文件拖到此处，或
               <em>点击上传</em>
@@ -221,9 +210,7 @@
           <a class="link-Label" :href="oaIp+'/static/template/electronicOpen-2007.xlsx'">下载电子发票开通模板</a>
         </div>
         <div class="sep-inline">
-          <el-upload :limit="1" :on-exceed="handleExceed" :with-credentials="true" :headers='{"X-requested-With": "XMLHttpRequest"}'
-            ref="electronicOpenFile" :auto-upload="false" :action="oaIp+'/customer/electronicOpen'" class="upload-demo" drag
-            :on-success="handleElectronicOpenSuccess" :before-upload="beforeBatchNetUpload">
+          <el-upload :limit="1" :on-exceed="handleExceed" :with-credentials="true" :headers='{"X-requested-With": "XMLHttpRequest"}' ref="electronicOpenFile" :auto-upload="false" :action="oaIp+'/customer/electronicOpen'" class="upload-demo" drag :on-success="handleElectronicOpenSuccess" :before-upload="beforeBatchNetUpload">
             <i class="el-icon-upload"></i>
             <div class="el-upload__text">可将需要上传的文件拖到此处，或
               <em>点击上传</em>
@@ -310,613 +297,601 @@
 <style lang='scss' scoped>
 </style>
 <script>
-  import SearchForm from "@src/components/SearchForm";
-  import DataPage from "@src/components/DataPage";
-  import { mixinsPc } from "@src/common/mixinsPc";
+import SearchForm from "@src/components/SearchForm";
+import DataPage from "@src/components/DataPage";
+import { mixinsPc } from "@src/common/mixinsPc";
 
-  // table页与搜索页公用功能
-  import { mixinDataTable } from "@src/components/DataPage/dataPage";
-  import { todayStr, today_ } from "@src/common/dateSerialize";
-  import { taxNumVerify, idCardVerify, phoneNumVerify, phoneNumVerify_r, taxNumVerify_r } from "@src/common/regexp";
-  import {
-    getCustomers,
-    postAddCustomer,
-    postEditCustomer,
-    postCloseCustomer,
-    postUploadFile, // 上传文件
-    transferCustomer,
-    perfectCustomer
-  } from "@src/apis";
-  export default {
-    name: "customerlist",
-    components: {
-      "myp-search-form": SearchForm, // 搜索组件
-      "myp-data-page": DataPage // 数据列表组件
-    },
-    mixins: [mixinsPc, mixinDataTable],
-    data() {
-      var searchConditionVar = {
-        customerNo: "", // 商户编号
-        taxNo: "", // 企业税号
-        enterpriseName: "", // 企业名称
-        createTimeStart: todayStr, // 开始时间
-        createTimeEnd: todayStr, // 结束时间
-        agentNo: "", // 合伙人编号
-        customerFrom: "", // 入网来源
-        containChild: "TRUE"
-      };
-      return {
-        fileList: [],
-        disabledIs: this.$store.state.userInfoAndMenu.isOperate ? false : true,
-        addFormVisible: false, // 新增框
-        batchNetFormVisible: false, // 批量入网框
-        batchTransferFormVisible: false, // 批量转移模板
-        detailsFormVisible: false, // 详情框
-        editFormVisible: false, // 编辑框
-        electronicOpenFormVisible: false, // 批量开通电票
-        transferFormVisible: false,
-        batchNetForm: {
-          // 批量上传
-          url: ""
-        },
-        batchTransferForm: {
-          // 批量转移
-          url: ""
-        },
-        addFormRules: {
-          enterpriseName: [
-            { required: true, message: "请输入企业名称", trigger: "blur,change" }
-          ],
-          taxNo: [{ validator: taxNumVerify_r, trigger: "blur,change" }],
-          linkMan: [
-            { required: true, message: "请输入联系人姓名", trigger: "blur,change" }
-          ],
-          phoneNo: [{ validator: phoneNumVerify_r, trigger: "blur,change" }],
-          idCard: [{ validator: idCardVerify, trigger: "blur,change" }],
+// table页与搜索页公用功能
+import { mixinDataTable } from "@src/components/DataPage/dataPage";
+import { todayStr, today_ } from "@src/common/dateSerialize";
+import { idCardVerify, phoneNumVerify_r, taxNumVerify_r } from "@src/common/regexp";
+import {
+  getCustomers,
+  postAddCustomer,
+  postEditCustomer,
+  postCloseCustomer,
+  transferCustomer
+} from "@src/apis";
+export default {
+  name: "customerlist",
+  components: {
+    "myp-search-form": SearchForm, // 搜索组件
+    "myp-data-page": DataPage // 数据列表组件
+  },
+  mixins: [mixinsPc, mixinDataTable],
+  data() {
+    var searchConditionVar = {
+      customerNo: "", // 商户编号
+      taxNo: "", // 企业税号
+      enterpriseName: "", // 企业名称
+      createTimeStart: todayStr, // 开始时间
+      createTimeEnd: todayStr, // 结束时间
+      agentNo: "", // 合伙人编号
+      customerFrom: "", // 入网来源
+      containChild: "TRUE"
+    };
+    return {
+      fileList: [],
+      disabledIs: this.$store.state.userInfoAndMenu.isOperate ? false : true,
+      addFormVisible: false, // 新增框
+      batchNetFormVisible: false, // 批量入网框
+      batchTransferFormVisible: false, // 批量转移模板
+      detailsFormVisible: false, // 详情框
+      editFormVisible: false, // 编辑框
+      electronicOpenFormVisible: false, // 批量开通电票
+      transferFormVisible: false,
+      batchNetForm: {
+        // 批量上传
+        url: ""
+      },
+      batchTransferForm: {
+        // 批量转移
+        url: ""
+      },
+      addFormRules: {
+        enterpriseName: [
+          { required: true, message: "请输入企业名称", trigger: "blur,change" }
+        ],
+        taxNo: [{ validator: taxNumVerify_r, trigger: "blur,change" }],
+        linkMan: [
+          { required: true, message: "请输入联系人姓名", trigger: "blur,change" }
+        ],
+        phoneNo: [{ validator: phoneNumVerify_r, trigger: "blur,change" }],
+        idCard: [{ validator: idCardVerify, trigger: "blur,change" }],
 
-        },
-        batchNetFormRules: {},
-        formLabelWidth: "100px",
-        editFormRules: {}, // 编辑单个规则
-        editForm: {}, // 编辑单个表单
-        detailsForm: {}, // 详情单个表单
-        transferFormRules: {
-          receiveAgentNo: [
-            { required: true, message: "不能为空", trigger: "blur,change" }
-          ]
-        }, // 转移单个规则
-        transferForm: {}, // 转移单个表单
-        // 查询条件数据
-        searchCondition: searchConditionVar,
-        addForm: {
-          enterpriseName: "",
-          taxNo: "",
-          legalPerson: "",
-          idCard: "",
-          linkMan: "",
-          phoneNo: ""
-        },
-        // 顶部搜索表单信息
-        searchOptions: {
-          lableWidth: "100px",
-          searchList: [
-            // 请注意 该数组里对象的corresattr属性值与searchCondition里面的属性是一一对应的 不可少
-            {
-              corresattr: "customerNo",
-              type: "text", // 表单类型
-              label: "商户编号", // 输入框前面的文字
-              show: true, // 普通搜索显示
-              defaultVlue: "", // 表单默认的内容
-              value: "", // 表单默认的内容
-              cb: value => {
-                // 表单输入之后回调函数
-                this.searchCondition.customerNo = value;
-              }
-            },
-            // {
-            //   corresattr: "phoneNo",
-            //   type: "text", // 表单类型
-            //   label: "手机号", // 输入框前面的文字
-            //   show: true, // 普通搜索显示
-            //   value: "", // 表单默认的内容
-            //   cb: value => {
-            //     // 表单输入之后回调函数
-            //     this.searchCondition.phoneNo = value;
-            //   }
-            // },
-
-            {
-              corresattr: "enterpriseName",
-              type: "text",
-              label: "企业名称",
-              show: true, // 普通搜索显示
-              defaultVlue: "",
-              value: "",
-              cb: value => {
-                this.searchCondition.enterpriseName = value;
-              }
-            },
-            {
-              type: "dateGroup",
-              label: "入网时间",
-              show: true, // 普通搜索显示
-              options: [
-                {
-                  corresattr: "createTimeStart",
-                  label: "开始时间",
-                  defaultVlue: todayStr,
-                  value: today_,
-                  cb: value => {
-                    this.searchCondition.createTimeStart = value;
-                  }
-                },
-                {
-                  corresattr: "createTimeEnd",
-                  lable: "结束时间",
-                  defaultVlue: todayStr,
-                  value: today_,
-                  cb: value => {
-                    this.searchCondition.createTimeEnd = value;
-                  }
-                }
-              ]
-            },
-            {
-              corresattr: "status",
-              type: "select",
-              label: "状态",
-              show: false, // 普通搜索显示
-              defaultVlue: "",
-              value: "",
-              options: [
-                {
-                  value: "TRUE",
-                  label: "开启"
-                },
-                {
-                  value: "FALSE",
-                  label: "关闭"
-                }
-              ],
-              cb: value => {
-                this.searchCondition.status = value;
-              }
-            },
-            {
-              corresattr: "taxNo",
-              type: "text",
-              label: "企业税号",
-              show: false, // 普通搜索显示
-              defaultVlue: "",
-              value: "",
-              cb: value => {
-                this.searchCondition.taxNo = value;
-              }
-            },
-            {
-              corresattr: "agentNo",
-              type: "text",
-              label: "合伙人编号",
-              show: false, // 普通搜索显示
-              defaultVlue: "",
-              value: "",
-              cb: value => {
-                this.searchCondition.agentNo = value;
-              }
-            },
-            {
-              corresattr: "customerFrom",
-              type: "select",
-              label: "入网来源",
-              show: false, // 普通搜索显示
-              defaultVlue: "",
-              value: "",
-              options: [
-                ...this.statusFilterQuery('customerFrom')
-              ],
-              cb: value => {
-                this.searchCondition.customerFrom = value;
-              }
-            },
-            {
-              corresattr: "containChild",
-              type: "select",
-              label: "包含关系",
-              show: false, // 普通搜索显示
-              defaultVlue: "TRUE",
-              value: "TRUE",
-              options: [
-                {
-                  value: "TRUE",
-                  label: "包含下级"
-                },
-                {
-                  value: "FALSE",
-                  label: "不包含下级"
-                }
-              ],
-              cb: value => {
-                this.searchCondition.containChild = value;
-              }
+      },
+      batchNetFormRules: {},
+      formLabelWidth: "100px",
+      editFormRules: {}, // 编辑单个规则
+      editForm: {}, // 编辑单个表单
+      detailsForm: {}, // 详情单个表单
+      transferFormRules: {
+        receiveAgentNo: [
+          { required: true, message: "不能为空", trigger: "blur,change" }
+        ]
+      }, // 转移单个规则
+      transferForm: {}, // 转移单个表单
+      // 查询条件数据
+      searchCondition: searchConditionVar,
+      addForm: {
+        enterpriseName: "",
+        taxNo: "",
+        legalPerson: "",
+        idCard: "",
+        linkMan: "",
+        phoneNo: ""
+      },
+      // 顶部搜索表单信息
+      searchOptions: {
+        lableWidth: "100px",
+        searchList: [
+          // 请注意 该数组里对象的corresattr属性值与searchCondition里面的属性是一一对应的 不可少
+          {
+            corresattr: "customerNo",
+            type: "text", // 表单类型
+            label: "商户编号", // 输入框前面的文字
+            show: true, // 普通搜索显示
+            defaultVlue: "", // 表单默认的内容
+            value: "", // 表单默认的内容
+            cb: value => {
+              // 表单输入之后回调函数
+              this.searchCondition.customerNo = value;
             }
-          ]
-        },
-
-        // 列表数据
-        actionUrl: getCustomers,
-        postSearch: searchConditionVar,
-        tableData: {
-          // getDataUrl: {
-          //   url: getCustomers // 初始化数据
+          },
+          // {
+          //   corresattr: "phoneNo",
+          //   type: "text", // 表单类型
+          //   label: "手机号", // 输入框前面的文字
+          //   show: true, // 普通搜索显示
+          //   value: "", // 表单默认的内容
+          //   cb: value => {
+          //     // 表单输入之后回调函数
+          //     this.searchCondition.phoneNo = value;
+          //   }
           // },
-          dataHeader: [
-            // table列信息 key=>表头标题，word=>表内容信息
-            {
-              key: "商户编号",
-              width: "110px",
-              sortable: true,
-              word: "customerNo"
-            },
-            { key: "入网时间", word: "createTime", width: "170px" },
-            {
-              key: "企业名称",
-              width: "200px",
-              word: "enterpriseName"
-            },
-            {
-              key: "企业税号",
-              width: "100px",
-              word: "taxNo"
-            },
-            {
-              key: "联系人",
-              width: "100px",
-              word: "linkMan"
-            },
-            {
-              key: "手机号",
-              width: "120px",
-              word: "phoneNo"
-            },
-            {
-              key: "合伙人编号",
-              width: "100px",
-              word: "agentNo"
-            },
-            {
-              key: "入网来源",
-              width: "100px",
-              word: "customerFrom",
-              status: true,
-              type: data => {
-                return this.statusFilter(data, 'customerFrom')
-              }
-            },
-            {
-              key: "状态",
-              word: "status",
-              width: "80px",
-              status: true,
-              type: data => {
-                return this.statusFilter(data, 'handleStatus')
-              }
+
+          {
+            corresattr: "enterpriseName",
+            type: "text",
+            label: "企业名称",
+            show: true, // 普通搜索显示
+            defaultVlue: "",
+            value: "",
+            cb: value => {
+              this.searchCondition.enterpriseName = value;
             }
-          ],
-          operation: {
-            width: "130px",
+          },
+          {
+            type: "dateGroup",
+            label: "入网时间",
+            show: true, // 普通搜索显示
             options: [
-              // 操作按钮
               {
-                text: "详情",
-                color: "#1890ff",
-                visibleFn: rowdata => {
-                  return this.adminFilter('customer_detail')
-                  // if (this.adminOperationAll.customer_detail == "TRUE") {
-                  //   return true;
-                  // } else {
-                  //   return false;
-                  // }
-                },
-                cb: rowdata => {
-                  this.detailsForm = rowdata;
-                  this.detailsFormVisible = true;
+                corresattr: "createTimeStart",
+                label: "开始时间",
+                defaultVlue: todayStr,
+                value: today_,
+                cb: value => {
+                  this.searchCondition.createTimeStart = value;
                 }
               },
               {
-                text: "编辑",
-                visibleFn: rowdata => {
-                  return this.adminFilter('customer_edit') &&
-                    (rowdata.agentNo == this.userBussinessNo ||
-                      this.userType == "admin")
-                  // if (
-                  //   this.adminOperationAll.customer_edit == "TRUE" &&
-                  //   (rowdata.agentNo == this.userBussinessNo ||
-                  //     this.userType == "admin")
-                  // ) {
-                  //   return true;
-                  // } else {
-                  //   return false;
-                  // }
-                },
-                color: "#1890ff",
-                cb: rowdata => {
-                  this.editForm = rowdata;
-                  this.editFormVisible = true;
-                }
-              },
-              {
-                text: "转移",
-                visibleFn: rowdata => {
-                  return this.adminFilter('customer_transfer')
-                  // if (this.adminOperationAll.customer_transfer == "TRUE") {
-                  //   return true;
-                  // } else {
-                  //   return false;
-                  // }
-                },
-                color: "#1890ff",
-                cb: rowdata => {
-                  this.transferForm = rowdata;
-                  this.transferFormVisible = true;
+                corresattr: "createTimeEnd",
+                lable: "结束时间",
+                defaultVlue: todayStr,
+                value: today_,
+                cb: value => {
+                  this.searchCondition.createTimeEnd = value;
                 }
               }
             ]
-          }
-        }
-      };
-    },
-
-    methods: {
-      closeButVisible(status) {
-        if (status == 'TRUE' && this.adminFilter('customer_updateByStatus')) {
-          return true
-        } else {
-          return false;
-        }
-      },
-      addSave(formName) {
-        // 新增内容保存
-        this.$refs[formName].validate(valid => {
-          if (valid) {
-            this.saveLoading = true;
-            // this.resetSearchHandle();
-            postAddCustomer()(this.addForm).then(data => {
-              if (data.code === "00") {
-                this.$message({
-                  message: "恭喜你，新增数据成功",
-                  type: "success",
-                  center: true
-                });
-                this.addFormVisible = false;
-                this.resetForm("addForm");
-                this.reloadData();
-              } else {
-                this.$message({
-                  message: data.msg,
-                  type: "warning",
-                  center: true
-                });
+          },
+          {
+            corresattr: "status",
+            type: "select",
+            label: "状态",
+            show: false, // 普通搜索显示
+            defaultVlue: "",
+            value: "",
+            options: [
+              {
+                value: "TRUE",
+                label: "开启"
+              },
+              {
+                value: "FALSE",
+                label: "关闭"
               }
-              this.saveLoading = false;
-              console.log(data);
-            });
-          }
-        });
-      },
-      // 批量入网文件保存
-      saveBatchNet(formName) {
-        this.$refs[formName].validate(valid => {
-          if (valid) {
-            if (this.$refs.batchnetFile.uploadFiles.length === 0) {
-              this.$message({
-                type: "warning", //warning
-                message: "请选择上传文件!"
-              });
-              return;
-            } else {
-              this.saveLoading = true;
-              this.$refs.batchnetFile.submit();
+            ],
+            cb: value => {
+              this.searchCondition.status = value;
+            }
+          },
+          {
+            corresattr: "taxNo",
+            type: "text",
+            label: "企业税号",
+            show: false, // 普通搜索显示
+            defaultVlue: "",
+            value: "",
+            cb: value => {
+              this.searchCondition.taxNo = value;
+            }
+          },
+          {
+            corresattr: "agentNo",
+            type: "text",
+            label: "合伙人编号",
+            show: false, // 普通搜索显示
+            defaultVlue: "",
+            value: "",
+            cb: value => {
+              this.searchCondition.agentNo = value;
+            }
+          },
+          {
+            corresattr: "customerFrom",
+            type: "select",
+            label: "入网来源",
+            show: false, // 普通搜索显示
+            defaultVlue: "",
+            value: "",
+            options: [
+              ...this.statusFilterQuery('customerFrom')
+            ],
+            cb: value => {
+              this.searchCondition.customerFrom = value;
+            }
+          },
+          {
+            corresattr: "containChild",
+            type: "select",
+            label: "包含关系",
+            show: false, // 普通搜索显示
+            defaultVlue: "TRUE",
+            value: "TRUE",
+            options: [
+              {
+                value: "TRUE",
+                label: "包含下级"
+              },
+              {
+                value: "FALSE",
+                label: "不包含下级"
+              }
+            ],
+            cb: value => {
+              this.searchCondition.containChild = value;
             }
           }
-        });
+        ]
       },
-      // 批量转移文件提交
-      saveBatchTransfer() {
-        if (this.$refs.batchtransferFile.uploadFiles.length === 0) {
-          this.$message({
-            type: "warning", //warning
-            message: "请选择上传文件!"
-          });
-          return;
-        } else {
-          this.saveLoading = true;
-          this.$refs.batchtransferFile.submit();
-        }
-      },
-      // 批量开通点票
-      saveElectronicOpen() {
-        if (this.$refs.electronicOpenFile.uploadFiles.length === 0) {
-          this.$message({
-            type: "warning", //warning
-            message: "请选择上传文件!"
-          });
-          return;
-        } else {
-          this.saveLoading = true;
-          this.$refs.electronicOpenFile.submit();
-        }
-      },
-      handleBatchTransferSuccess(res, file) {
-        // 批量转移文件上传成功
-        if (res.data == "00") {
-          this.batchTransferFormVisible = false;
-        } else {
-          this.$message({
-            message: "上传失败",
-            type: "warning"
-          });
-        }
-        this.reloadData();
-        this.$message.success("恭喜您！上传成功");
-        this.$refs["batchtransferFile"].clearFiles();
-        this.saveLoading = false;
-      },
-      handleBatchNetSuccess(res, file) {
-        // 批量入网文件上传成功
-        if (res.data == "00") {
-          this.$message.success("恭喜您！上传成功");
-        } else {
-          this.$message({
-            message: res.msg,
-            type: "warning"
-          });
-        }
-        this.reloadData();
-        this.$refs["batchnetFile"].clearFiles();
-        this.batchNetFormVisible = false;
-        this.saveLoading = false;
-      },
-      // 批量开通电票成功
-      handleElectronicOpenSuccess(res, file) {
-        if (res.data == "00") {
-          this.$message.success("恭喜您！上传成功");
-        } else {
-          this.$message({
-            message: res.msg,
-            type: "warning"
-          });
-        }
-        this.reloadData();
-        this.$refs["electronicOpenFile"].clearFiles();
-        this.electronicOpenFormVisible = false;
-        this.saveLoading = false;
-      },
-      editSave(formName) {
-        // 编辑内容保存
-        this.$refs[formName].validate(valid => {
-          if (valid) {
-            this.saveLoading = true;
-            // this.resetSearchHandle();
-            postEditCustomer()(this.editForm).then(data => {
-              if (data.code === "00") {
-                this.$message({
-                  message: "恭喜你，修改数据成功",
-                  type: "success",
-                  center: true
-                });
-                this.editFormVisible = false;
-                this.reloadData(
-                  this.postPage,
-                  this.postLimit,
-                  this.searchCondition
-                );
-              } else {
-                this.$message({
-                  message: data.msg,
-                  type: "warning",
-                  center: true
-                });
-              }
-              this.saveLoading = false;
-              console.log(data);
-            });
+
+      // 列表数据
+      actionUrl: getCustomers,
+      postSearch: searchConditionVar,
+      tableData: {
+        // getDataUrl: {
+        //   url: getCustomers // 初始化数据
+        // },
+        dataHeader: [
+          // table列信息 key=>表头标题，word=>表内容信息
+          {
+            key: "商户编号",
+            width: "110px",
+            sortable: true,
+            word: "customerNo"
+          },
+          { key: "入网时间", word: "createTime", width: "170px" },
+          {
+            key: "企业名称",
+            width: "200px",
+            word: "enterpriseName"
+          },
+          {
+            key: "企业税号",
+            width: "100px",
+            word: "taxNo"
+          },
+          {
+            key: "联系人",
+            width: "100px",
+            word: "linkMan"
+          },
+          {
+            key: "手机号",
+            width: "120px",
+            word: "phoneNo"
+          },
+          {
+            key: "合伙人编号",
+            width: "100px",
+            word: "agentNo"
+          },
+          {
+            key: "入网来源",
+            width: "100px",
+            word: "customerFrom",
+            status: true,
+            type: data => {
+              return this.statusFilter(data, 'customerFrom')
+            }
+          },
+          {
+            key: "状态",
+            word: "status",
+            width: "80px",
+            status: true,
+            type: data => {
+              return this.statusFilter(data, 'handleStatus')
+            }
           }
-        });
-      },
-      // 关闭
-      closeSave() {
-        let editForm = this.editForm;
-        this.$confirm('该操作将关闭此条商户信息, 是否继续?', '提示', {
-          confirmButtonText: '确定',
-          cancelButtonText: '取消',
-          type: 'warning'
-        }).then(() => {
-          postCloseCustomer()({
-            customerNo: editForm.customerNo
-          }).then(res => {
-            if (res.code == "00") {
+        ],
+        operation: {
+          width: "130px",
+          options: [
+            // 操作按钮
+            {
+              text: "详情",
+              color: "#1890ff",
+              visibleFn: () => {
+                return this.adminFilter('customer_detail')
+              },
+              cb: rowdata => {
+                this.detailsForm = rowdata;
+                this.detailsFormVisible = true;
+              }
+            },
+            {
+              text: "编辑",
+              visibleFn: rowdata => {
+                return this.adminFilter('customer_edit') &&
+                  (rowdata.agentNo == this.userBussinessNo ||
+                    this.userType == "admin")
+                // if (
+                //   this.adminOperationAll.customer_edit == "TRUE" &&
+                //   (rowdata.agentNo == this.userBussinessNo ||
+                //     this.userType == "admin")
+                // ) {
+                //   return true;
+                // } else {
+                //   return false;
+                // }
+              },
+              color: "#1890ff",
+              cb: rowdata => {
+                this.editForm = rowdata;
+                this.editFormVisible = true;
+              }
+            },
+            {
+              text: "转移",
+              visibleFn: () => {
+                return this.adminFilter('customer_transfer')
+              },
+              color: "#1890ff",
+              cb: rowdata => {
+                this.transferForm = rowdata;
+                this.transferFormVisible = true;
+              }
+            }
+          ]
+        }
+      }
+    };
+  },
+
+  methods: {
+    closeButVisible(status) {
+      if (status == 'TRUE' && this.adminFilter('customer_updateByStatus')) {
+        return true
+      } else {
+        return false;
+      }
+    },
+    addSave(formName) {
+      // 新增内容保存
+      this.$refs[formName].validate(valid => {
+        if (valid) {
+          this.saveLoading = true;
+          // this.resetSearchHandle();
+          postAddCustomer()(this.addForm).then(data => {
+            if (data.code === "00") {
               this.$message({
-                type: 'success',
-                message: '关闭成功!'
+                message: "恭喜你，新增数据成功",
+                type: "success",
+                center: true
               });
+              this.addFormVisible = false;
+              this.resetForm("addForm");
+              this.reloadData();
+            } else {
+              this.$message({
+                message: data.msg,
+                type: "warning",
+                center: true
+              });
+            }
+            this.saveLoading = false;
+            console.log(data);
+          });
+        }
+      });
+    },
+    // 批量入网文件保存
+    saveBatchNet(formName) {
+      this.$refs[formName].validate(valid => {
+        if (valid) {
+          if (this.$refs.batchnetFile.uploadFiles.length === 0) {
+            this.$message({
+              type: "warning", //warning
+              message: "请选择上传文件!"
+            });
+            return;
+          } else {
+            this.saveLoading = true;
+            this.$refs.batchnetFile.submit();
+          }
+        }
+      });
+    },
+    // 批量转移文件提交
+    saveBatchTransfer() {
+      if (this.$refs.batchtransferFile.uploadFiles.length === 0) {
+        this.$message({
+          type: "warning", //warning
+          message: "请选择上传文件!"
+        });
+        return;
+      } else {
+        this.saveLoading = true;
+        this.$refs.batchtransferFile.submit();
+      }
+    },
+    // 批量开通点票
+    saveElectronicOpen() {
+      if (this.$refs.electronicOpenFile.uploadFiles.length === 0) {
+        this.$message({
+          type: "warning", //warning
+          message: "请选择上传文件!"
+        });
+        return;
+      } else {
+        this.saveLoading = true;
+        this.$refs.electronicOpenFile.submit();
+      }
+    },
+    handleBatchTransferSuccess(res) {
+      // 批量转移文件上传成功
+      if (res.data == "00") {
+        this.batchTransferFormVisible = false;
+      } else {
+        this.$message({
+          message: "上传失败",
+          type: "warning"
+        });
+      }
+      this.reloadData();
+      this.$message.success("恭喜您！上传成功");
+      this.$refs["batchtransferFile"].clearFiles();
+      this.saveLoading = false;
+    },
+    handleBatchNetSuccess(res) {
+      // 批量入网文件上传成功
+      if (res.data == "00") {
+        this.$message.success("恭喜您！上传成功");
+      } else {
+        this.$message({
+          message: res.msg,
+          type: "warning"
+        });
+      }
+      this.reloadData();
+      this.$refs["batchnetFile"].clearFiles();
+      this.batchNetFormVisible = false;
+      this.saveLoading = false;
+    },
+    // 批量开通电票成功
+    handleElectronicOpenSuccess(res) {
+      if (res.data == "00") {
+        this.$message.success("恭喜您！上传成功");
+      } else {
+        this.$message({
+          message: res.msg,
+          type: "warning"
+        });
+      }
+      this.reloadData();
+      this.$refs["electronicOpenFile"].clearFiles();
+      this.electronicOpenFormVisible = false;
+      this.saveLoading = false;
+    },
+    editSave(formName) {
+      // 编辑内容保存
+      this.$refs[formName].validate(valid => {
+        if (valid) {
+          this.saveLoading = true;
+          // this.resetSearchHandle();
+          postEditCustomer()(this.editForm).then(data => {
+            if (data.code === "00") {
+              this.$message({
+                message: "恭喜你，修改数据成功",
+                type: "success",
+                center: true
+              });
+              this.editFormVisible = false;
               this.reloadData(
                 this.postPage,
                 this.postLimit,
                 this.searchCondition
               );
-              this.editFormVisible = false;
             } else {
               this.$message({
-                type: 'success',
-                message: res.msg
+                message: data.msg,
+                type: "warning",
+                center: true
               });
             }
-          })
-        }).catch(() => {
-        });
-
-      },
-      transferSave(formName) {
-        // 转移保存
-        this.$refs[formName].validate(valid => {
-          if (valid) {
-            this.saveLoading = true;
-            transferCustomer()({
-              customerNo: this.transferForm.customerNo,
-              enterpriseName: this.transferForm.enterpriseName,
-              agentNo: this.transferForm.agentNo,
-              receiveAgentNo: this.transferForm.receiveAgentNo
-            }).then(data => {
-              if (data.code === "00") {
-                this.$message({
-                  message: "恭喜你，转移成功",
-                  type: "success",
-                  center: true
-                });
-                this.transferFormVisible = false;
-                this.reloadData();
-              } else {
-                this.$message({
-                  message: data.msg,
-                  type: "warning",
-                  center: true
-                });
-              }
-              this.saveLoading = false;
+            this.saveLoading = false;
+            console.log(data);
+          });
+        }
+      });
+    },
+    // 关闭
+    closeSave() {
+      let editForm = this.editForm;
+      this.$confirm('该操作将关闭此条商户信息, 是否继续?', '提示', {
+        confirmButtonText: '确定',
+        cancelButtonText: '取消',
+        type: 'warning'
+      }).then(() => {
+        postCloseCustomer()({
+          customerNo: editForm.customerNo
+        }).then(res => {
+          if (res.code == "00") {
+            this.$message({
+              type: 'success',
+              message: '关闭成功!'
+            });
+            this.reloadData(
+              this.postPage,
+              this.postLimit,
+              this.searchCondition
+            );
+            this.editFormVisible = false;
+          } else {
+            this.$message({
+              type: 'success',
+              message: res.msg
             });
           }
-        });
-      },
-      beforeBatchNetUpload(file) {
-        const extension = file.name.split(".")[1] === "xlsx";
-        const extension2 = file.name.split(".")[1] === "numbers";
-        const isLt2M = file.size / 1024 / 1024 < 10;
-        if (!extension && !extension2) {
-          this.$message.error("上传文件只能是 xlsx numbers格式!");
+        })
+      }).catch(() => {
+      });
+
+    },
+    transferSave(formName) {
+      // 转移保存
+      this.$refs[formName].validate(valid => {
+        if (valid) {
+          this.saveLoading = true;
+          transferCustomer()({
+            customerNo: this.transferForm.customerNo,
+            enterpriseName: this.transferForm.enterpriseName,
+            agentNo: this.transferForm.agentNo,
+            receiveAgentNo: this.transferForm.receiveAgentNo
+          }).then(data => {
+            if (data.code === "00") {
+              this.$message({
+                message: "恭喜你，转移成功",
+                type: "success",
+                center: true
+              });
+              this.transferFormVisible = false;
+              this.reloadData();
+            } else {
+              this.$message({
+                message: data.msg,
+                type: "warning",
+                center: true
+              });
+            }
+            this.saveLoading = false;
+          });
         }
-        this.saveLoading = false;
-        return (extension || extension2) && isLt2M;
-      },
-      handleRemove(file, fileList) {
-        console.log(file, fileList);
-      },
-      handlePreview(file) {
-        console.log(file);
-      },
-      exportDialog() {
-        // 导出
-        this.$refs.dataTable.ExportExcel("/customer/export");
-      },
-      handleExceed(files, fileList) {
-        this.$message.warning(
-          `当前共选择了 ${files.length +
-          fileList.length} 个文件,超出限定个数。可删除下方上传列表，再重新选择上传`
-        );
-        this.saveLoading = false;
+      });
+    },
+    beforeBatchNetUpload(file) {
+      const extension = file.name.split(".")[1] === "xlsx";
+      const extension2 = file.name.split(".")[1] === "numbers";
+      const isLt2M = file.size / 1024 / 1024 < 10;
+      if (!extension && !extension2) {
+        this.$message.error("上传文件只能是 xlsx numbers格式!");
       }
+      this.saveLoading = false;
+      return (extension || extension2) && isLt2M;
     },
-    computed: {
+    handleRemove(file, fileList) {
+      console.log(file, fileList);
     },
-    mounted() { }
-  };
+    handlePreview(file) {
+      console.log(file);
+    },
+    exportDialog() {
+      // 导出
+      this.$refs.dataTable.ExportExcel("/customer/export");
+    },
+    handleExceed(files, fileList) {
+      this.$message.warning(
+        `当前共选择了 ${files.length +
+        fileList.length} 个文件,超出限定个数。可删除下方上传列表，再重新选择上传`
+      );
+      this.saveLoading = false;
+    }
+  },
+  computed: {
+  },
+  mounted() { }
+};
 </script>
