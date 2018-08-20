@@ -45,13 +45,11 @@
 </template>
 <!-- Add "scoped" attribute to limit CSS to this component only -->
 <script>
-import $ from "jquery";
 import SearchForm from "@src/components/SearchForm";
 import DataPage from "@src/components/DataPage";
 // table页与搜索页公用功能
 import { mixinsPc } from "@src/common/mixinsPc";
 import { mixinDataTable } from "@src/components/DataPage/dataPage";
-import { todayStr, today_ } from "@src/common/dateSerialize";
 import {
   getEmailconfigs,
   postAddEmailconfig,
@@ -193,7 +191,7 @@ export default {
           ]
         },
         // 数据加载成功
-        dataSuccess: data => { }
+        // dataSuccess: data => { }
       }
     };
   },
