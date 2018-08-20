@@ -86,8 +86,6 @@
 import utils from "@src/common/utils";
 import { mixinsPc } from "@src/common/mixinsPc";
 // table页与搜索页公用功能
-import { todayStr } from "@src/common/dateSerialize";
-import { taxNumVerify, idCardVerify, phoneNumVerify } from "@src/common/regexp";
 import UploadImg from "@src/components/UploadImg";
 import {
   upload,
@@ -196,7 +194,7 @@ export default {
         center: true
       });
     },
-    goback(path) {
+    goback() {
       this.$emit("backDetail", 'qrcode');
     },
 

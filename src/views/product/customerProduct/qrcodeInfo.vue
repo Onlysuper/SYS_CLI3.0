@@ -14,14 +14,11 @@
 </style>
 <script>
 import { mixinsPc } from "@src/common/mixinsPc";
-import { phoneNumVerify } from "@src/common/regexp";
 import { areaOrgcode } from "@src/common/orgcode";
 import { banks } from "@src/common/bank";
 import utils from "@src/common/utils"
 import {
-  getCustomerProducts,
   getCheckCustomerProduct,
-  getQueryCustomerProduct,
   perfectCustomer,
   getBankList,
   getQueryCustomerElectronic
@@ -112,7 +109,6 @@ export default {
         if (data.code == "00") {
           // this.addVisibleAll(featureType);
           if (featureType == "ELECTRONIC") {
-            var data = data.data;
             this.addForm.enterpriseName = data.enterpriseName;
             this.addForm.bussinessAddress = data.bussinessAddress;
             this.addForm.bussinessName = data.bussinessName;
@@ -141,7 +137,7 @@ export default {
         this.addFeatureTypeVisible = false;
       }
     },
-    handleChangeArea(value) {
+    handleChangeArea() {
       // 省市区选择
     },
     customerInputBlur() {
@@ -191,7 +187,6 @@ export default {
             bussinessPhone: thisForm.bussinessPhone,
             bussinessName: thisForm.bussinessName,
             registMoney: thisForm.registMoney,
-            bankCode: thisForm.bankCode,
             bankAccountNo: thisForm.bankAccountNo,
             mounthCount: thisForm.mounthCount,
             unionCode: thisForm.unionCode,
@@ -280,7 +275,7 @@ export default {
       this.bankCity = value[2] || value[1] || value[0];
       this.getBankListHandle();
     },
-    getBankListHandle(back) {
+    getBankListHandle() {
       this.editForm.unionCode = "";
       this.editForm.branchName = "";
       // 获取支行

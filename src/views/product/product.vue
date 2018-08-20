@@ -392,7 +392,7 @@ export default {
             {
               text: "编辑",
               color: "#1890ff",
-              visibleFn: rowdata => {
+              visibleFn: () => {
                 return this.adminFilter('product_edit')
               },
               cb: rowdata => {

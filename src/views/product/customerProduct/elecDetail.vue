@@ -78,17 +78,12 @@ import IScroll from "iscroll";
 Vue.use(IScrollView, IScroll);
 import imageView from 'vue-imageview'
 import ScrollPane from "@src/components/ScrollPane";
-import bussinessTypeJson from "@src/data/bussinessType.json";
 import { mixinsPc } from "@src/common/mixinsPc";
 // table页与搜索页公用功能
-import { todayStr } from "@src/common/dateSerialize";
-import { taxNumVerify, idCardVerify, phoneNumVerify, idCardVerify_r } from "@src/common/regexp";
-import { areaOrgcode } from "@src/common/orgcode";
 import utils from "@src/common/utils"
 import {
   getQueryCustomerElectronic
 } from "@src/apis";
-import { banks } from "@src/common/bank";
 export default {
   name: "eleDetail",
   props: {
@@ -184,7 +179,7 @@ export default {
         this.$refs.iscroll.refresh();
       })
     },
-    largeImageShow(url, type) {
+    largeImageShow(url) {
       this.largeUrl = [url];
       this.fadeViewVisible = true
       this.imageIndex = 0

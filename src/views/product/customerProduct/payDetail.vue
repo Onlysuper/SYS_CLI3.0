@@ -186,19 +186,12 @@ Vue.use(IScrollView, IScroll);
 import imageView from 'vue-imageview'
 import LargeimgView from '@src/components/LargeimgView'
 import ScrollPane from "@src/components/ScrollPane";
-import bussinessTypeJson from "@src/data/bussinessType.json";
 import { mixinsPc } from "@src/common/mixinsPc";
 // table页与搜索页公用功能
-import { todayStr } from "@src/common/dateSerialize";
-import { taxNumVerify, idCardVerify, phoneNumVerify, idCardVerify_r } from "@src/common/regexp";
-import { areaOrgcode } from "@src/common/orgcode";
 import utils from "@src/common/utils"
 import {
-  getBankList,
-  completeSettleInfo,
   getCustomerEchoProduct
 } from "@src/apis";
-import { banks } from "@src/common/bank";
 export default {
   name: "payDetail",
   props: {
@@ -353,11 +346,6 @@ export default {
           url: "",
           id: ""
         },
-        accountLicenseImg: {
-          imgname: "开户许可证",
-          url: "",
-          id: ""
-        },
         wechatLogoCashSpaceImg: {
           imgname: "微信标示前台照",
           url: "",
@@ -447,7 +435,6 @@ export default {
           imgsRow = utils.pickObj(data.imgs, [
             "bussinessLicenseImg", "identityFrontImg", "identityBackImg", "placeImg", "cashSpaceImg", "storeImg"
           ]);
-          let addImgs = {};
           if (data.customer) {
             customerRow = utils.pickObj(data.customer, [
               "orgCode", 'bussinessAddress', 'legalPerson', 'idCard', 'category',

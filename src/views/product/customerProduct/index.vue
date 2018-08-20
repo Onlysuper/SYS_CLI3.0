@@ -177,16 +177,11 @@
 }
 </style>
 <script> 
-import imageView from 'vue-imageview'
-import ScrollPane from "@src/components/ScrollPane";
-import FullShade from "@src/components/FullShade";
 import SearchForm from "@src/components/SearchForm";
 import DataPage from "@src/components/DataPage";
 import { mixinsPc } from "@src/common/mixinsPc";
 // table页与搜索页公用功能
 import { mixinDataTable } from "@src/components/DataPage/dataPage";
-import { todayStr } from "@src/common/dateSerialize";
-import { taxNumVerify, idCardVerify, phoneNumVerify } from "@src/common/regexp";
 import utils from "@src/common/utils";
 import openInfo from "./openInfo";
 import paystatusGoods from "./paystatusGoods";
@@ -198,10 +193,7 @@ import qrcodeDetail from "./qrcodeDetail";
 import qrcodeUpload from "./qrcodeUpload";
 import {
   getCustomerOpenProducts,
-  postCustomerOpenProductSearch,
-  getCustomerEchoProduct,
   postHandleCustomerProduct,
-  getQueryCustomerElectronic,
   getUserProductStatus,
   changeBillOpenCheck
 } from "@src/apis";
@@ -215,7 +207,6 @@ export default {
     paystatusGoods: paystatusGoods,
     paystatusUpload: paystatusUpload,
     paystatusSuccess: paystatusSuccess,
-    openInfo: openInfo,
     payDetail,
     elecDetail,
     qrcodeDetail,
@@ -331,7 +322,6 @@ export default {
         supportTypes: [],
         // supportTypesArr: ["普票", "专票", "特殊"],
         payTypes: [],
-        // payTypesArr: ["B扫C", "C扫B"]
       },
       supportTypesOptions: [
         {
@@ -349,11 +339,11 @@ export default {
       ],
       payTypesOptions: [
         {
-          name: "B扫C",
+          name: "B扫C",
           code: "1"
         },
         {
-          name: "C扫B",
+          name: "C扫B",
           code: "2"
         },
         {
@@ -585,6 +575,7 @@ export default {
               text: "开通",
               color: "#1890ff",
               visibleFn: rowdata => {
+
                 if (
                   (this.$store.state.userInfoAndMenu.isOperate || !isBranchOffice) &&
                   rowdata.payStatus == "INIT" ||
@@ -723,8 +714,7 @@ export default {
             {
               text: "配置",
               color: "#1890ff",
-              visibleFn: rowdata => {
-                // console.log(this.adminFilter("userProductStatus_config"));
+              visibleFn: () => {
                 if (
                   this.adminFilter("userProductStatus_config")
                 ) {
@@ -798,22 +788,21 @@ export default {
       let thisChecked = value[value.length - 1];
       let payTypes = this.styleForm.payTypes;
       if (thisChecked == '4' && payTypes.length > 1) {
-        let index = payTypes.findIndex(function (value, index, arr) {
+        let index = payTypes.findIndex(function (value) {
           return value == 4;
         })
-        let length = this.styleForm.payTypes.length;
         payTypes.splice(0, index);
         payTypes.splice(1);
       } else {
         if (new Set(payTypes).has("4") && payTypes.length > 1) {
-          let index = payTypes.findIndex(function (value, index, arr) {
+          let index = payTypes.findIndex(function (value) {
             return value == 4;
           })
           payTypes.splice(index, 1);
         }
       }
     },
-    supportTypesChange(value) {
+    supportTypesChange() {
       let supportTypes = this.styleForm.supportTypes
       // 选择特殊的时候必须勾选普票
       if (new Set(supportTypes).has("4")) {
@@ -877,12 +866,12 @@ export default {
           }).then(() => {
             this.resaultHandle(obj);
           }).catch(() => {
-          });;
+          })
         }
       });
     },
     // 审核通过
-    adoptSave(customerType, detailsForm) {
+    adoptSave(customerType) {
       let resaultForm = this.resaultData;
       let obj = {
         bussinessNo: resaultForm.bussinessNo,
@@ -908,7 +897,7 @@ export default {
       });
     },
     // 审核拒绝
-    refuseSave(customerType, detailsForm) {
+    refuseSave(customerType) {
       this.$prompt("请输入拒绝原因", "提示", {
         confirmButtonText: "确定",
         cancelButtonText: "取消",
@@ -1023,7 +1012,7 @@ export default {
       this.editFormVisible = true;
     },
     // 点击开通产品
-    openProduct(type) {
+    openProduct() {
       let rowdata = { ...this.resaultData };
       this.customerTypeSelected = [
         {
@@ -1082,7 +1071,7 @@ export default {
       this.detailsFormVisible = false
     },
     // 下一步
-    nextFn(next, nextFn) {
+    nextFn(next) {
       this.openProductView = next;
       this.reloadData()
     },
@@ -1176,13 +1165,13 @@ export default {
             break;
           case "elecStatus":
             this.elecStatusVisible = true;
-            if (row.elecStatus == "REJECT" || row.elecStatus == "WAITING_SUBMIT" && (this.$store.state.userInfoAndMenu.isOperate || !isBranchOffice)) {
+            if (row.elecStatus == "REJECT" || row.elecStatus == "WAITING_SUBMIT" && (this.$store.state.userInfoAndMenu.isOperate || !this.isBranchOffice)) {
               this.editVisiblebut = true;
             }
             break;
           case "payStatus":
             this.payStatusVisible = true;
-            if (row.payStatus == "REJECT" || row.payStatus == "WAITING_SUBMIT" && (this.$store.state.userInfoAndMenu.isOperate || !isBranchOffice)) {
+            if (row.payStatus == "REJECT" || row.payStatus == "WAITING_SUBMIT" && (this.$store.state.userInfoAndMenu.isOperate || !this.isBranchOffice)) {
               this.editVisiblebut = true;
             }
             break;
@@ -1191,6 +1180,7 @@ export default {
     }
   },
   computed: {
+    isBranchOffice() { return this.$store.state.userInfoAndMenu.userMessage.all.userType === "branchOffice" },
     customerType() {
       return this.selectOptions.customerType
     },

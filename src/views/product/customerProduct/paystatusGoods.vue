@@ -42,11 +42,8 @@
 <script>
 import { mixinsPc } from "@src/common/mixinsPc";
 // table页与搜索页公用功能
-import { todayStr } from "@src/common/dateSerialize";
-import { taxNumVerify, idCardVerify, phoneNumVerify } from "@src/common/regexp";
 import { completeConvergeProduct, getCustomerEchoProduct } from "@src/apis";
 import settleMode from "@src/data/settleMode.json";
-import utils from "@src/common/utils";
 export default {
   name: "",
   components: {},
@@ -61,7 +58,6 @@ export default {
       formLabelWidth: "110px",
       settleModeOption: settleMode,
       payStatusForm: {
-        alipayRate: "",
         t0CashCostFixed: 0,
         settleMode: "T1", // 不开通
         wechatRate: "",
