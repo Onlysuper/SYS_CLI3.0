@@ -1,0 +1,14 @@
+{
+  "YEEPIAO": {
+    "id": "yp",
+    "name": "易票管理系统",
+    "version": "",
+    "copyright": "© 2016-2017 yeepiao.com 版权所有"
+  },
+  "ZHONGFU": {
+    "id": "zf",
+    "name": "中付支付管理系统",
+    "version": "",
+    "copyright": "© 2016-2017 版权所有"
+  }
+}

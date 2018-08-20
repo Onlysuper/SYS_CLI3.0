@@ -1,0 +1,944 @@
+{
+  "mctUniversalFlagtatus": {
+    "TRUE": {
+      "name": "是",
+      "color": "#67C23A"
+    },
+    "FALSE": {
+      "name": "否",
+      "color": "#909399"
+    }
+  },
+  "mctPoolStatus": {
+    "TRUE": {
+      "name": "正常可用",
+      "color": "#67C23A"
+    },
+    "LIMITING": {
+      "name": "不可用",
+      "color": "#909399"
+    },
+    "DELETE": {
+      "name": "删除",
+      "color": "#909399"
+    }
+  },
+  "mctPoolBussinessType": {
+    "WECHAT": {
+      "name": "微信",
+      "color": "#67C23A"
+    },
+    "ALIPAY": {
+      "name": "支付宝",
+      "color": "#409EFF"
+    },
+    "UNIONPAY": {
+      "name": "银联二维码",
+      "color": "#E6A23C"
+    }
+  },
+  "mctPoolPayAmount": {
+    "A": {
+      "name": "0~10元",
+      "color": "#909399"
+    },
+    "B": {
+      "name": "10~100元",
+      "color": "#67C23A"
+    },
+    "C": {
+      "name": "100~500元",
+      "color": "#67C23A"
+    },
+    "D": {
+      "name": "500~1000元",
+      "color": "#67C23A"
+    },
+    "E": {
+      "name": "1000~3000元",
+      "color": "#67C23A"
+    },
+    "F": {
+      "name": "3000~5000元",
+      "color": "#67C23A"
+    },
+    "G": {
+      "name": "5000元以上",
+      "color": "#67C23A"
+    }
+  },
+  "merBalanceAccStatus": {
+    "0": {
+      "name": "不可用",
+      "color": "#909399"
+    },
+    "1": {
+      "name": "可用",
+      "color": "#67C23A"
+    }
+  },
+  "idType": {
+    "0": {
+      "name": "身份证",
+      "color": "#67C23A"
+    },
+    "1": {
+      "name": "护照",
+      "color": "#67C23A"
+    },
+    "2": {
+      "name": "港澳同胞回乡证",
+      "color": "#E6A23C"
+    },
+    "3": {
+      "name": "港澳居民来往内地通行证",
+      "color": "#409EFF"
+    },
+    "4": {
+      "name": "台湾居民来往大陆通行证",
+      "color": "#409EFF"
+    }
+  },
+  "merExtendConfigJump": {
+    "TRUE": {
+      "name": "是",
+      "color": "#67C23A"
+    },
+    "FALSE": {
+      "name": "否",
+      "color": "#909399"
+    }
+  },
+  "mctQuotaOrdersStatus": {
+    "TRUE": {
+      "name": "有效",
+      "color": "#67C23A"
+    },
+    "FALSE": {
+      "name": "无效 (不可交易)",
+      "color": "#909399"
+    }
+  },
+  "messageRecordType": {
+    "TEXT": {
+      "name": "文本类",
+      "color": "#67C23A"
+    },
+    "DOWNLOAD": {
+      "name": "下载类",
+      "color": "#409EFF"
+    }
+  },
+  "messageRecordStatus": {
+    "SUCCESS": {
+      "name": "成功",
+      "color": "#67C23A"
+    },
+    "WAIT_SEND": {
+      "name": "待发送",
+      "color": "#E6A23C"
+    },
+    "TO_QUEUE": {
+      "name": "队列中",
+      "color": "#409EFF"
+    },
+    "FAIL": {
+      "name": "失败",
+      "color": "#F56C6C"
+    }
+  },
+  "userStatus": {
+    "TRUE": {
+      "name": "有效",
+      "color": "#67C23A"
+    },
+    "FALSE": {
+      "name": "未开启",
+      "color": "#909399"
+    },
+    "DELETE": {
+      "name": "已删除",
+      "color": "#F56C6C"
+    }
+  },
+  "customerSettleOutMoneyStatus": {
+    "OUT_SUCCESS": {
+      "name": "出款成功",
+      "color": "#67C23A"
+    },
+    "OUT_SEND": {
+      "name": "出款已发送",
+      "color": "#409EFF"
+    },
+    "OUT_FAIL": {
+      "name": "出款失败",
+      "color": "#909399"
+    },
+    "WAIT_AUDIT": {
+      "name": "待审核",
+      "color": "#E6A23C"
+    },
+    "AUDIT_FAIL": {
+      "name": "审核失败",
+      "color": "#909399"
+    }
+  },
+  "emailBussinessType": {
+    "customer": {
+      "name": "商户",
+      "color": "#E6A23C"
+    },
+    "agent": {
+      "name": "合伙人",
+      "color": "#67C23A"
+    }
+  },
+  "emailStatus": {
+    "TRUE": {
+      "name": "开启",
+      "color": "#67C23A"
+    },
+    "FALSE": {
+      "name": "关闭",
+      "color": "#909399"
+    }
+  },
+  "containChild": {
+    "TRUE": {
+      "name": "包含下级",
+      "color": "#E6A23C"
+    },
+    "FALSE": {
+      "name": "不包含下级",
+      "color": "#E6A23C"
+    }
+  },
+  "empowerBindStatus": {
+    "BINDED": {
+      "name": "已绑定",
+      "color": "#67C23A"
+    },
+    "TRUE": {
+      "name": "未绑定",
+      "color": "#409EFF"
+    },
+    "FALSE": {
+      "name": "无效",
+      "color": "#909399"
+    }
+  },
+  "bankCustomerStatus": {
+    "WAIT_AUDIT": {
+      "name": "待审核",
+      "color": "#409EFF"
+    },
+    "SUCCESS": {
+      "name": "审核通过",
+      "color": "#67C23A"
+    },
+    "REJECT": {
+      "name": "审核拒绝",
+      "color": "#909399"
+    },
+    "INIT": {
+      "name": "初始化",
+      "color": "#409EFF"
+    }
+  },
+  "channelWay": {
+    "CONVERGE": {
+      "name": "中付通道",
+      "color": "#409EFF"
+    },
+    "SHOUYINJIA": {
+      "name": "收银家通道",
+      "color": "#67C23A"
+    }
+  },
+  "settleStatus": {
+    "TRUE": {
+      "name": "已确认",
+      "color": "#409EFF"
+    },
+    "FALSE": {
+      "name": "待确认",
+      "color": "#E6A23C"
+    },
+    "SUCCESS": {
+      "name": "已结算",
+      "color": "#67C23A"
+    }
+  },
+  "profitSettleStatus": {
+    "TRUE": {
+      "name": "已结算",
+      "color": "#409EFF"
+    },
+    "FALSE": {
+      "name": "未结算",
+      "color": "#E6A23C"
+    }
+  },
+  "convergePayStatus": {
+    "TRUE": {
+      "name": "正常",
+      "color": "#409EFF"
+    },
+    "FALSE": {
+      "name": "异常",
+      "color": "#F56C6C"
+    },
+    "SUCCESS": {
+      "name": "正常",
+      "color": "#67C23A"
+    }
+  },
+  "versionStatus": {
+    "TRUE": {
+      "name": "允许升级",
+      "color": "#409EFF"
+    },
+    "FALSE": {
+      "name": "不允许升级",
+      "color": "#E6A23C"
+    },
+    "SUCCESS": {
+      "name": "升级成功",
+      "color": "#67C23A"
+    }
+  },
+  "versionOpenCloseStatus": {
+    "TRUE": {
+      "name": "开启",
+      "color": "#67C23A"
+    },
+    "FALSE": {
+      "name": "未开启",
+      "color": "#909399"
+    }
+  },
+  "versionIsForced": {
+    "TRUE": {
+      "name": "是",
+      "color": "#67C23A"
+    },
+    "FALSE": {
+      "name": "否",
+      "color": "#909399"
+    }
+  },
+  "payTypeDetail": {
+    "trade.scanPay": {
+      "name": "扫码支付",
+      "color": "#67C23A"
+    },
+    "trade.microPay": {
+      "name": "刷卡支付",
+      "color": "#E6A23C"
+    },
+    "trade.h5Pay": {
+      "name": "h5支付",
+      "color": "#409EFF"
+    },
+    "trade.appPay": {
+      "name": "app支付",
+      "color": "#F56C6C"
+    },
+    "trade.jsPay": {
+      "name": "公众号支付",
+      "color": "#F56C6C"
+    }
+  },
+  "payType": {
+    "WECHAT": {
+      "name": "微信",
+      "color": "#67C23A"
+    },
+    "ALIPAY": {
+      "name": "支付宝",
+      "color": "#E6A23C"
+    }
+  },
+  "payFrom": {
+    "SMART_POS": {
+      "name": "智能pos",
+      "color": "#67C23A"
+    },
+    "PLUGIN": {
+      "name": "插件",
+      "color": "#409EFF"
+    },
+    "THIRD_PARTY": {
+      "name": "第三方",
+      "color": "#E6A23C"
+    }
+  },
+  "accountType": {
+    "0": {
+      "name": "对公",
+      "color": "#409EFF"
+    },
+    "1": {
+      "name": "对私",
+      "color": "#E6A23C"
+    }
+  },
+  "mctTradingPayType": {
+    "WECHAT": {
+      "name": "微信",
+      "color": "#67C23A"
+    },
+    "ALIPAY": {
+      "name": "支付宝",
+      "color": "#409EFF"
+    },
+    "BAIDU": {
+      "name": "百度",
+      "color": "#E6A23C"
+    },
+    "UNIONPAY": {
+      "name": "银联",
+      "color": "#084632"
+    },
+    "QUICK_PAY": {
+      "name": "快捷支付",
+      "color": "#E6A23C"
+    }
+  },
+  "mctTradingTransType": {
+    "TRADE": {
+      "name": "交易",
+      "color": "#67C23A"
+    },
+    "REFUND": {
+      "name": "退款",
+      "color": "#E6A23C"
+    },
+    "CANCEL": {
+      "name": "撤单",
+      "color": "#909399"
+    }
+  },
+  "mctTradingStatus": {
+    "INIT": {
+      "name": "下单",
+      "color": "#409EFF"
+    },
+    "SUCCESS": {
+      "name": "成功",
+      "color": "#67C23A"
+    },
+    "FAIL": {
+      "name": "失败",
+      "color": "#F56C6C"
+    },
+    "PAY_WAIT": {
+      "name": "待支付",
+      "color": "#E6A23C"
+    },
+    "CANCEL": {
+      "name": "撤销",
+      "color": "#909399"
+    },
+    "REFUND": {
+      "name": "退款",
+      "color": "#E6A23C"
+    },
+    "PROCESSING": {
+      "name": "处理中",
+      "color": "#E6A23C"
+    },
+    "CHANGE": {
+      "name": "特殊退款",
+      "color": "#409EFF"
+    }
+  },
+  "mctPayforAccountType": {
+    "11": {
+      "name": "对私",
+      "color": "#409EFF"
+    },
+    "12": {
+      "name": "对公",
+      "color": "#67C23A"
+    }
+  },
+  "onlineFacilitatorOrdersStatus": {
+    "TRUE": {
+      "name": "有效",
+      "color": "#409EFF"
+    },
+    "FALSE": {
+      "name": "无效",
+      "color": "#909399"
+    },
+    "DELETE": {
+      "name": "删除",
+      "color": "#909399"
+    },
+    "LOCKED": {
+      "name": "锁定",
+      "color": "#67C23A"
+    },
+    "SUCCESS": {
+      "name": "成功",
+      "color": "#67C23A"
+    },
+    "FAIL": {
+      "name": "失败",
+      "color": "#F56C6C"
+    }
+  },
+  "mctPayforStatus": {
+    "INIT": {
+      "name": "下单成功",
+      "color": "#67C23A"
+    },
+    "PROCCESSING": {
+      "name": "处理中",
+      "color": "#E6A23C"
+    },
+    "WAIT_AUDIT": {
+      "name": "待审核",
+      "color": "#409EFF"
+    },
+    "OUT_SEND": {
+      "name": "出款已发送",
+      "color": "#409EFF"
+    },
+    "OUT_SUCCESS": {
+      "name": "出款成功",
+      "color": "#67C23A"
+    },
+    "REJECT": {
+      "name": "审核拒绝",
+      "color": "#909399"
+    },
+    "FAIL": {
+      "name": "下单失败",
+      "color": "#F56C6C"
+    }
+  },
+  "mctManageStatus": {
+    "TRUE": {
+      "name": "有效",
+      "color": "#67C23A"
+    },
+    "FALSE": {
+      "name": "无效",
+      "color": "#67C23A"
+    },
+    "DELETE": {
+      "name": "删除",
+      "color": "#67C23A"
+    },
+    "LOCKED": {
+      "name": "锁定",
+      "color": "#67C23A"
+    },
+    "SUCCESS": {
+      "name": "成功",
+      "color": "#67C23A"
+    },
+    "FAIL": {
+      "name": "失败",
+      "color": "#F56C6C"
+    }
+  },
+  "mctManageType": {
+    "0": {
+      "name": "个人",
+      "color": "#67C23A"
+    },
+    "1": {
+      "name": "企业/个体户",
+      "color": "#67C23A"
+    }
+  },
+  "mctManageSettleMode": {
+    "T0": {
+      "name": "T0",
+      "color": "#67C23A"
+    },
+    "T1": {
+      "name": "T1",
+      "color": "#909399"
+    }
+  },
+  "settleMode": {
+    "T0": {
+      "name": "已开通",
+      "color": "#67C23A"
+    },
+    "T1": {
+      "name": "未开通",
+      "color": "#909399"
+    }
+  },
+  "payStatus": {
+    "PLUGIN_SUCCESS": {
+      "name": "插件接受成功",
+      "color": "#67C23A"
+    },
+    "SUCCESS": {
+      "name": "推送成功",
+      "color": "#409EFF"
+    },
+    "BILLING_SUCCESS": {
+      "name": "开票成功",
+      "color": "#67C23A"
+    },
+    "BILLING": {
+      "name": "开票中",
+      "color": "#E6A23C"
+    },
+    "ORDER": {
+      "name": "待开票",
+      "color": "#409EFF"
+    },
+    "BILLING_FAIL": {
+      "name": "开票失败",
+      "color": "#F56C6C"
+    },
+    "QUERY_FAIL": {
+      "name": "查询失败",
+      "color": "#F56C6C"
+    },
+    "SUBMITTING": {
+      "name": "已提交",
+      "color": "#909399"
+    }
+  },
+  "billType": {
+    "1": {
+      "name": "普票",
+      "color": "#409EFF"
+    },
+    "2": {
+      "name": "专票",
+      "color": "#67C23A"
+    },
+    "3": {
+      "name": "普票(个人)",
+      "color": "#E6A23C"
+    }
+  },
+  "billStandard": {
+    "TRUE": {
+      "name": "已达标",
+      "color": "#67C23A"
+    },
+    "FALSE": {
+      "name": "未达标",
+      "color": "#909399"
+    }
+  },
+  "empowerCheckIsPrint": {
+    "N": {
+      "name": "否",
+      "color": "#909399"
+    },
+    "Y": {
+      "name": "是",
+      "color": "#67C23A"
+    }
+  },
+  "migrateType": {
+    "OUT_ORDER": {
+      "name": "授权码序列号",
+      "color": "#67C23A"
+    },
+    "ORDER": {
+      "name": "授权码序列号转移",
+      "color": "#E6A23C"
+    }
+  },
+  "empowerCheckStatus": {
+    "SUCCESS": {
+      "name": "审核通过",
+      "color": "#67C23A"
+    },
+    "AUDITING": {
+      "name": "待审核",
+      "color": "#E6A23C"
+    },
+    "REJECT": {
+      "name": "拒绝",
+      "color": "#909399"
+    }
+  },
+  "empowerManageMateriel": {
+    "TRUE": {
+      "name": "有物料",
+      "color": "#67C23A"
+    },
+    "FALSE": {
+      "name": "无物料",
+      "color": "#909399"
+    }
+  },
+  "empowerTransferStatus": {
+    "SUCCESS": {
+      "name": "通过",
+      "color": "#67C23A"
+    },
+    "REJECT": {
+      "name": "拒绝",
+      "color": "#909399"
+    },
+    "AUDITING": {
+      "name": "待审核",
+      "color": "#E6A23C"
+    }
+  },
+  "empowerCheckReceiptType": {
+    "AUTHCODE": {
+      "name": "授权码",
+      "color": "#67C23A"
+    },
+    "SCANCODEGUN": {
+      "name": "扫码枪",
+      "color": "#E6A23C"
+    }
+  },
+  "enterprisesupplyStatus": {
+    "INIT": {
+      "name": "未处理",
+      "color": "#E6A23C"
+    },
+    "SUCCESS": {
+      "name": "已处理",
+      "color": "#67C23A"
+    },
+    "FAIL": {
+      "name": "失败",
+      "color": "#F56C6C"
+    }
+  },
+  "handleStatus": {
+    "TRUE": {
+      "name": "开启",
+      "color": "#67C23A"
+    },
+    "FALSE": {
+      "name": "关闭",
+      "color": "#909399"
+    }
+  },
+  "handleDeviceType": {
+    "HX_PAN": {
+      "name": "金税盘",
+      "color": "#67C23A"
+    },
+    "BW_PAN": {
+      "name": "税控盘",
+      "color": "#E6A23C"
+    }
+  },
+  "handleClientType": {
+    "CLIENT": {
+      "name": "桌面客户端",
+      "color": "#67C23A"
+    },
+    "BROWER": {
+      "name": "浏览器",
+      "color": "#E6A23C"
+    }
+  },
+  "handleDefaultType": {
+    "TRUE": {
+      "name": "默认",
+      "color": "#67C23A"
+    },
+    "FALSE": {
+      "name": "不默认",
+      "color": "#E6A23C"
+    }
+  },
+  "handleProductOpenStatus": {
+    "TRUE": {
+      "name": "已开通",
+      "color": "#67C23A"
+    },
+    "INIT": {
+      "name": "未开通",
+      "color": "#909399"
+    },
+    "REJECT": {
+      "name": "审核失败",
+      "color": "#F56C6C"
+    },
+    "CHECKING": {
+      "name": "待审核",
+      "color": "#E6A23C"
+    },
+    "WAITING_SUBMIT": {
+      "name": "待提交",
+      "color": "#E6A23C"
+    },
+    "PROCESSING": {
+      "name": "开通待处理",
+      "color": "#E6A23C"
+    },
+    "FALSE": {
+      "name": "已关闭",
+      "color": "#909399"
+    }
+  },
+  "typeCustomerVersion": {
+    "HOST_C": {
+      "name": "c++主程序",
+      "color": "rgb(64, 158, 255)"
+    },
+    "UPDATE_C": {
+      "name": "c++更新程序",
+      "color": "#F56C6C"
+    },
+    "HOST": {
+      "name": "c#主程序",
+      "color": "#409EFF"
+    },
+    "UPDATE": {
+      "name": "c#更新程序",
+      "color": "#409EFF"
+    },
+    "RELEASE": {
+      "name": "官网版本",
+      "color": "#409EFF"
+    },
+    "HOST_OLD": {
+      "name": "c#老版本主程序",
+      "color": "#409EFF"
+    },
+    "DATA_COLLECTION": {
+      "name": "数据采集程序",
+      "color": "#409EFF"
+    },
+    "HOST_DZFP": {
+      "name": "电子发票版本",
+      "color": "#E6A23C"
+    },
+    "HOST_ZF": {
+      "name": "HOST_ZF: 支付版本",
+      "color": "#409EFF"
+    },
+    "MANUAL": {
+      "name": "其他",
+      "color": "#909399"
+    }
+  },
+  "changeBill": {
+    "INIT": {
+      "name": "待提交",
+      "color": "#409EFF"
+    },
+    "ADMIN_AUDIT": {
+      "name": "初审中",
+      "color": "#E6A23C"
+    },
+    "WAIT_AUDIT": {
+      "name": "复审中",
+      "color": "#E6A23C"
+    },
+    "SUCCESS": {
+      "name": "已完成",
+      "color": "#67C23A"
+    },
+    "REJECT": {
+      "name": "审核拒绝",
+      "color": "#909399"
+    }
+  },
+  "orderQueryStatus": {
+    "SUCCESS": {
+      "name": "成功",
+      "color": "#67C23A"
+    },
+    "INIT": {
+      "name": "订单初始化",
+      "color": "#409EFF"
+    },
+    "PAY_WAIT": {
+      "name": "等待支付",
+      "color": "#E6A23C"
+    },
+    "FAIL": {
+      "name": "失败",
+      "color": "#F56C6C"
+    },
+    "REFUND": {
+      "name": "退款",
+      "color": "#F56C6C"
+    },
+    "CANCEL": {
+      "name": "撤单",
+      "color": "#909399"
+    }
+  },
+  "userType": {
+    "0": {
+      "name": "普通",
+      "color": "#409EFF"
+    },
+    "1": {
+      "name": "静默",
+      "color": "#67C23A"
+    }
+  },
+  "customerFrom": {
+    "LOCAL": {
+      "name": "后台",
+      "color": "#67C23A"
+    },
+    "OFFICAL_ACCOUNT": {
+      "name": "公众号",
+      "color": "#409EFF"
+    },
+    "PLUGIN": {
+      "name": "插件",
+      "color": "#F56C6C"
+    },
+    "SCAN_CODE": {
+      "name": "扫码",
+      "color": "#409EFF"
+    },
+    "ZF_STOCK": {
+      "name": "中付存量",
+      "color": "#409EFF"
+    },
+    "ZF_UNIONPAY": {
+      "name": "中付POS",
+      "color": "#409EFF"
+    },
+    "OPEN_API": {
+      "name": "第三方",
+      "color": "#E6A23C"
+    },
+    "SLIENT": {
+      "name": "静默",
+      "color": "#409EFF"
+    }
+  },
+  "bussinessType": {
+    "AGENT_PROFIT_COST": {
+      "name": "一级合伙人分润成本",
+      "color": "#67C23A"
+    },
+    "SECOND_AGENT_PROFIT_COST": {
+      "name": "多级合伙人分润成本",
+      "color": "#E6A23C"
+    },
+    "CUSTOMER_TRANSACTION_COST": {
+      "name": "商户交易费率",
+      "color": "#409EFF"
+    },
+    "CUSTOMER_QRCODE_BILLING": {
+      "name": "商户开票",
+      "color": "#F56C6C"
+    },
+    "CUSTOMER_ELECTRONIC": {
+      "name": "商户电票",
+      "color": "#67C23A"
+    }
+  }
+}
